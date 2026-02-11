@@ -1,0 +1,1667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tamil Nadu Travel Guide</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    :root {
+      --primary-blue: #3B82F6;
+      --secondary-orange: #F97316;
+      --dark-text: #1F2937;
+      --light-text: #4B5563;
+      --background-light: #F3F4F6;
+      --card-bg: #FFFFFF;
+      --border-light: #E5E7EB;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--background-light);
+      margin: 0;
+      padding: 0;
+      color: var(--dark-text);
+      line-height: 1.6;
+    }
+
+    /* ---------------------- */
+    /* NAVIGATION BAR */
+    /* ---------------------- */
+    .navbar {
+      background-color: var(--card-bg);
+      padding: 15px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar-brand {
+      display: flex;
+      align-items: center;
+      font-weight: 700;
+      font-size: 1.5em;
+      color: var(--dark-text);
+      text-decoration: none;
+    }
+
+    .navbar-brand img {
+      width: 40px;
+      height: 40px;
+      margin-right: 10px;
+      border-radius: 8px;
+    }
+
+    .navbar-nav {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-item {
+      margin-left: 30px;
+    }
+
+    .nav-link {
+      color: var(--light-text);
+      text-decoration: none;
+      font-weight: 500;
+      padding: 8px 15px;
+      border-radius: 20px;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-link i {
+      margin-right: 8px;
+    }
+
+    .nav-link:hover {
+      background-color: rgba(var(--primary-blue), 0.1);
+      color: var(--primary-blue);
+    }
+
+    .nav-link.active {
+      background-color: var(--primary-blue);
+      color: var(--card-bg);
+    }
+
+    .nav-link.active.destinations {
+        background-color: var(--secondary-orange);
+        color: var(--card-bg);
+    }
+
+
+    /* ---------------------- */
+    /* HERO / HEADER SECTION */
+    /* ---------------------- */
+    .hero-section {
+      text-align: center;
+      padding: 60px 20px 40px;
+      background-color: var(--background-light);
+    }
+
+    .hero-section h1 {
+      font-size: 3.5em;
+      font-weight: 700;
+      color: var(--dark-text);
+      margin-bottom: 10px;
+    }
+
+    .hero-section p {
+      font-size: 1.2em;
+      color: var(--light-text);
+      margin-bottom: 30px;
+    }
+
+    /* ---------------------- */
+    /* SEARCH AND FILTER BAR */
+    /* ---------------------- */
+    .search-filter-bar {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      padding: 20px;
+      max-width: 900px;
+      margin: 0 auto 40px;
+      background-color: var(--card-bg);
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    }
+
+    .search-input-wrapper {
+      position: relative;
+      flex-grow: 1;
+      max-width: 400px;
+    }
+
+    .search-input-wrapper i {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--light-text);
+    }
+
+    #search-input {
+      width: 100%;
+      padding: 12px 12px 12px 45px;
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      font-size: 1em;
+      color: var(--dark-text);
+      outline: none;
+      transition: border-color 0.3s;
+    }
+
+    #search-input::placeholder {
+      color: var(--light-text);
+    }
+
+    #search-input:focus {
+      border-color: var(--primary-blue);
+    }
+
+    .filter-dropdown-wrapper {
+      position: relative;
+    }
+
+    .filter-dropdown-btn {
+      background-color: transparent;
+      border: 1px solid var(--border-light);
+      padding: 12px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1em;
+      color: var(--light-text);
+      transition: all 0.3s ease;
+      outline: none;
+    }
+
+    .filter-dropdown-btn:hover {
+      border-color: var(--primary-blue);
+      color: var(--primary-blue);
+    }
+    
+    .filter-dropdown-btn.active-filter {
+        border-color: var(--primary-blue);
+        color: var(--primary-blue);
+    }
+
+    .filter-dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: var(--card-bg);
+      min-width: 180px;
+      max-height: 300px;
+      overflow-y: auto;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+      z-index: 1;
+      border-radius: 8px;
+      margin-top: 10px;
+      right: 0;
+      list-style: none;
+      padding: 10px 0;
+    }
+
+    .filter-dropdown-content.show {
+      display: block;
+    }
+
+    .filter-dropdown-content li {
+      padding: 10px 20px;
+      cursor: pointer;
+      color: var(--dark-text);
+      transition: background-color 0.2s;
+    }
+
+    .filter-dropdown-content li:hover {
+      background-color: var(--background-light);
+    }
+
+    .filter-dropdown-content li.selected {
+        background-color: var(--primary-blue);
+        color: var(--card-bg);
+    }
+
+    /* ---------------------- */
+    /* DESTINATIONS LISTING */
+    /* ---------------------- */
+    .destinations-section {
+      padding: 20px 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .showing-destinations {
+      font-size: 1.1em;
+      color: var(--light-text);
+      margin-bottom: 25px;
+      font-weight: 500;
+    }
+
+    .destination-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 30px;
+    }
+
+    .destination-card {
+      background-color: var(--card-bg);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .destination-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .card-image-wrapper {
+      position: relative;
+      width: 100%;
+      padding-bottom: 65%;
+      overflow: hidden;
+    }
+
+    .card-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .card-category-tag {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      background-color: rgba(0, 0, 0, 0.6);
+      color: var(--card-bg);
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.85em;
+      font-weight: 600;
+      text-transform: capitalize;
+    }
+
+    .card-content {
+      padding: 20px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .card-content h3 {
+      font-size: 1.5em;
+      font-weight: 700;
+      margin-top: 0;
+      margin-bottom: 5px;
+      color: var(--dark-text);
+    }
+
+    .card-location {
+      font-size: 0.95em;
+      color: var(--light-text);
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+    }
+
+    .card-location i {
+      margin-right: 8px;
+      color: var(--light-text);
+    }
+
+    .card-description {
+      font-size: 0.95em;
+      color: var(--light-text);
+      margin-bottom: 20px;
+    }
+
+    .card-meta {
+      display: flex;
+      align-items: center;
+      font-size: 0.9em;
+      color: var(--light-text);
+      margin-bottom: 20px;
+    }
+
+    .card-meta i {
+      margin-right: 8px;
+      color: var(--light-text);
+    }
+
+    .explore-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(to right, var(--primary-blue), var(--secondary-orange));
+      color: var(--card-bg);
+      padding: 12px 25px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+    }
+
+    .explore-btn:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .explore-btn i {
+      margin-left: 10px;
+      transition: transform 0.3s ease;
+    }
+
+    .explore-btn:hover i {
+      transform: translateX(5px);
+    }
+
+    /* ---------------------- */
+    /* DETAIL PAGE STYLES */
+    /* ---------------------- */
+    #details-page {
+      padding: 40px;
+      max-width: 1000px;
+      margin: 0 auto;
+      background-color: var(--card-bg);
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      display: none; /* Hidden by default */
+    }
+
+    #details-page h2 {
+      font-size: 2.5em;
+      font-weight: 700;
+      color: var(--dark-text);
+      margin-top: 0;
+      border-bottom: 3px solid var(--secondary-orange);
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+    }
+
+    .detail-section h3 {
+      color: var(--primary-blue);
+      font-size: 1.8em;
+      margin-top: 30px;
+      border-left: 5px solid var(--primary-blue);
+      padding-left: 15px;
+    }
+
+    .detail-section ul {
+      list-style: none;
+      padding-left: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* 2 columns for smaller items */
+      gap: 20px;
+      margin-top: 15px;
+      margin-bottom: 30px;
+    }
+    
+    .detail-section li {
+        background-color: var(--background-light);
+        padding: 10px;
+        border-radius: 8px;
+        font-weight: 500;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        transition: transform 0.2s ease;
+    }
+
+    .detail-section li:hover {
+        transform: translateY(-3px);
+    }
+    
+    .detail-section li img {
+        width: 100%;
+        height: 100px; /* Fixed height for consistency */
+        object-fit: cover;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .detail-section p {
+        font-size: 1.1em;
+    }
+
+    .back-btn {
+        background-color: var(--light-text);
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: background-color 0.3s;
+        margin-bottom: 20px;
+        display: inline-flex;
+        align-items: center;
+    }
+
+    .back-btn:hover {
+        background-color: #333;
+    }
+
+    .back-btn i {
+        margin-right: 10px;
+    }
+
+
+    /* ---------------------- */
+    /* RESPONSIVE DESIGN */
+    /* ---------------------- */
+    @media (max-width: 900px) {
+      .navbar {
+        padding: 15px 20px;
+      }
+      .navbar-nav {
+        display: none;
+      }
+      .hero-section h1 {
+        font-size: 2.5em;
+      }
+      .hero-section p {
+        font-size: 1em;
+      }
+      .search-filter-bar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+      }
+      .search-input-wrapper,
+      .filter-dropdown-wrapper {
+        width: 100%;
+      }
+      .filter-dropdown-content {
+        right: auto;
+        left: 0;
+        width: 100%;
+        max-width: unset;
+      }
+      .destinations-section {
+        padding: 20px;
+      }
+      .destination-grid {
+        grid-template-columns: 1fr;
+      }
+      #details-page {
+          padding: 20px;
+      }
+      .detail-section ul {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Adjust for smaller screens */
+      }
+    }
+
+    @media (max-width: 600px) {
+      .navbar-brand span {
+        display: none;
+      }
+      .navbar-brand img {
+        margin-right: 0;
+      }
+      .hero-section {
+        padding: 40px 15px 30px;
+      }
+      .hero-section h1 {
+        font-size: 2em;
+      }
+      .hero-section p {
+        font-size: 0.9em;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="#" class="navbar-brand">
+      <img src="https://via.placeholder.com/40x40/60A5FA/FFFFFF?text=TN" alt="Tamil Nadu Logo">
+      Tamil Nadu <span>Travel Guide</span>
+    </a>
+    <ul class="navbar-nav">
+      <li class="nav-item"><a href="home.html" class="nav-link"><i class="fas fa-home"></i>Home</a></li>
+      <li class="nav-item"><a href="destination1.html" class="nav-link active destinations"><i class="fas fa-map-marker-alt"></i>Destinations</a></li>
+      <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-robot"></i>AI Guide</a></li>
+      <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-concierge-bell"></i>Services</a></li>
+      <li class="nav-item"><a href="contact.html" class="nav-link"><i class="fas fa-envelope"></i>Contact</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero-section" id="main-hero">
+    <h1>Discover Tamil Nadu</h1>
+    <p>From ancient temples to pristine beaches, explore the diverse beauty of Tamil Nadu</p>
+  </section>
+
+  <section class="search-filter-bar" id="main-search-filter">
+    <div class="search-input-wrapper">
+      <i class="fas fa-search"></i>
+      <input type="text" id="search-input" placeholder="Search destinations...">
+    </div>
+    <div class="filter-dropdown-wrapper">
+      <button class="filter-dropdown-btn" id="category-filter-btn">
+        <i class="fas fa-filter"></i> <span id="selected-category-text">All Categories</span> <i class="fas fa-chevron-down"></i>
+      </button>
+      <ul class="filter-dropdown-content" id="category-filter-dropdown">
+        <li data-category="All" class="selected">All Categories</li>
+      </ul>
+    </div>
+  </section>
+  
+  <main id="main-content-grid">
+    <section class="destinations-section">
+      <p class="showing-destinations" id="num-destinations-shown">Showing 0 destinations</p>
+      <div class="destination-grid" id="destinations-grid">
+        </div>
+    </section>
+  </main>
+
+  <section id="details-page">
+      </section>
+
+  <script>
+    // Helper function to generate a consistent placeholder image URL
+    const getPlaceholderImage = (text, size = "100x70", color = "D3D3D3", textColor = "000000") => 
+      `https://via.placeholder.com/${size}/${color}/${textColor}?text=${encodeURIComponent(text.replace(/[^a-zA-Z0-9 ]/g, '').split(' ').slice(0, 2).join('+'))}`;
+
+
+    const generateSmartDetails = (name, category, location) => {
+        const foodPrefixes = {
+            "CITY": ["Local Tiffin", "Biriyani (Local Style)", "Filter Coffee", "Traditional Sweets", "Spicy Street Food", "Fresh Juice"],
+            "HILL STATIONS": ["Homemade Chocolates", "Tea/Coffee", "Varkey (Local Biscuits)", "Fresh Fruits", "Soups", "Maggi"],
+            "BEACH": ["Fresh Seafood Curries", "Fish Fry", "Coconut Water", "Grilled Prawns", "Corn on Cob", "Ice Cream"],
+            "COSTAL": ["Prawns/Fish Fry", "Rice and Curry", "Crab Masala", "Seafood Thali", "Kari Dosa", "Local snacks"],
+            "ECO-TOURISM SPOTS": ["Forest honey", "Simple Local Meals", "Herbal Tea", "Fresh Vegetable Stew", "Millet Bread", "Bamboo Shoot Curry"],
+            "HERTIAGE SITES": ["Temple Prasadam", "Traditional Sweets", "Vada Curry", "Pongal", "Payasam", "Dosai"],
+        };
+
+        const attractionPrefixes = {
+            "CITY": ["Main Temple/Landmark", "Museum", "Local Market", "Art Gallery", "Shopping Street", "Historical Park"],
+            "HILL STATIONS": ["Lake/Viewpoint", "Botanical Garden", "Trekking Trails", "Waterfalls", "Tea Estates", "Pine Forests"],
+            "BEACH": ["Sunrise/Sunset Point", "Water Sports Center", "Lighthouse", "Coastal Temple", "Fishing Village", "Promenade"],
+            "COSTAL": ["Port/Harbour", "Mangrove Forest", "Coastal Temple", "Historic Fort", "Estuary Viewpoint", "Bird Sanctuary"],
+            "ECO-TOURISM SPOTS": ["Safari Zones", "Waterfalls", "Trekking Routes", "Nature Trails", "Riverside View", "Wildlife Spotting"],
+            "HERTIAGE SITES": ["Ancient Temple Complex", "Fort/Palace Remains", "Archaeological Sites", "Sculpture Parks", "Cave Temples", "Royal Mausoleum"],
+        };
+
+        const history = {
+            "CITY": `The city of ${name} has long been a commercial and cultural center, thriving near the ${location}. Its development has been shaped by various regional kingdoms.`,
+            "HILL STATIONS": `${name} was primarily developed during the British Colonial era as a summer retreat. Its history is tied to tea and coffee cultivation.`,
+            "BEACH": `The ${name} has served as a vital point for trade and fishing for centuries. It's a key feature in the region's ancient coastal history.`,
+            "COSTAL": `As a major coastal region, ${name} played a significant role in maritime trade and was often contested by colonial powers.`,
+            "ECO-TOURISM SPOTS": `${name} is a protected reserve established to conserve its unique biodiversity. Its history focuses on conservation efforts and local tribal traditions.`,
+            "HERTIAGE SITES": `This site represents significant historical and cultural value, linked deeply to the traditions and dynasties of the region (e.g., Chola, Pandya, Pallava).`,
+        };
+
+        const foods = (foodPrefixes[category] || ["Local Food"]).slice(0, 6).map(food => ({
+            name: food,
+            image: getPlaceholderImage(food, "100x70", "FFC0CB", "000000") // Pinkish background for food
+        }));
+
+        const attractions = (attractionPrefixes[category] || ["Local Attractions"]).slice(0, 4).map(att => ({
+            name: att,
+            image: getPlaceholderImage(att, "100x70", "B0E0E6", "000000") // Bluish background for attractions
+        }));
+
+
+        return {
+            fullDescription: `Explore the vibrant environment of ${name}, a renowned ${category} destination. ${location} provides a unique backdrop for its historical and modern attractions.`,
+            historicalSignificance: history[category] || "Detailed historical significance is a work in progress for this location.",
+            famousFood: foods,
+            nearbyAttractions: attractions,
+        };
+    };
+
+    const destinationsData = [
+        // 6. CITY SECTION (Expanded with Full Details)
+      {
+        name: "Chennai",
+        category: "CITY",
+        location: "Capital City",
+        img: "chennai city.jpg",
+        description: "The vibrant capital and cultural hub of Tamil Nadu, known for its rapid development, music, and arts.",
+        bestTime: "November to February",
+        details: {
+            fullDescription: "Chennai, formerly Madras, is the gateway to South India. It is a bustling metropolitan city with a rich history dating back to the British East India Company. It is famous for its vibrant cultural scene, including classical music and dance, and its long sandy beaches.",
+            historicalSignificance: "Home to Fort St. George, the first English fortress in India, built in 1644. It was a major battleground during the Carnatic Wars and served as the administrative capital for the Madras Presidency.",
+            famousFood: [
+                { name: "Idli/Sambar/Vada", image:"valparaiimage.src/idli sambar.jpg" },
+                { name: "Mylapore degree coffee", image:"mylapore coffe.jpg"},
+                { name: "Chettinad Chicken/Veg Curries", image: "chennai chicken curry.jpg" },
+                { name: "Jigarthanda (dessert)", image: "MFJ-Nuts-Jigarthanda-Images-01.jpg" },
+                { name: "Kothu Parotta", image: "kothu parotta.jpg" },
+                { name: "Filter Kaapi", image: "valparaiimage.src/filter coffee.jpg" }
+            ],
+            nearbyAttractions: [
+                { name: "Marina Beach", image: "marina beach.jpg" },
+                { name: "Kapaleeshwarar Temple", image: "kapaleeshwar temple.jpg" },
+                { name: "Fort St. George Museum", image: "705431655Fort_George_Main.jpg" },
+                { name: "Guindy National Park", image: "Guindy-national park.webp" }
+            ]
+        },
+        keywords: ["Chennai", "capital", "urban", "culture", "music", "metro"]
+      },
+      {
+        name: "Madurai",
+        category: "CITY",
+        location: "Vaikai River",
+        img: "Madurai city.jpg",
+        description: "The 'Athens of the East', famous for the Meenakshi Amman Temple and its historical significance as a major Pandya capital.",
+        bestTime: "October to March",
+         details: {
+            fullDescription: "Madurai is one of the oldest inhabited cities in the world and has been a major center for worship, trade, and learning for over two millennia. It is the heart of Tamil culture.",
+            historicalSignificance: "The seat of the Pandya kingdom, it was the location of the third Tamil Sangam, making it crucial to the development of Tamil literature and language.",
+            famousFood: [
+                { name: "Jigarthanda", image: "MFJ-Nuts-Jigarthanda-Images-01.jpg" },
+                { name: "Paruthi paal", image: "paruthi paal.jpeg" },
+                { name: "Madurai Idly (Mini Tiffin)", image: "mini idly.webp" },
+                { name: "Kothu Parotta", image: "Chicken-Kothu-Parotha.webp" },
+                { name: "Mutta Dosai", image: "DSCF4703mutttai dosai.jpg" },
+                { name: "Karidosai", image: "kari dosha.jpg" }
+            ],
+            nearbyAttractions: [
+                { name: "Meenakshi Amman Temple", image: "meenakshi amman temple.jpg" },
+                { name: "Thirumalai Nayakkar Palace", image: "thirumalai-nayakar-mahal.jpg" },
+                { name: "Gandhi Memorial Museum", image: "gandhi memorial.jpg" },
+                { name: "Azhagar Kovil", image: "azhagar kovil.jpg" }
+            ]
+        },
+        keywords: ["Madurai", "temple", "historical", "pandya", "ancient"]
+      },
+      {
+        name: "Coimbatore",
+        category: "CITY",
+        location: "Noyyal River",
+        img: "coimbatore city.jpg",
+        description: "Known as the 'Manchester of South India' due to its flourishing textile industry and proximity to the Western Ghats.",
+        bestTime: "September to March",
+        details: {
+            fullDescription: "Coimbatore is a major industrial and education hub. Surrounded by the Western Ghats, it offers a pleasant climate and is a gateway to several popular hill stations like Ooty and Valparai.",
+            historicalSignificance: "Ruled by the Cheras, Cholas, and Vijayanagara Empire, it gained prominence under the Kongu Nadu rulers. Its modern history is dominated by its textile mills and industrial growth.",
+            famousFood: [
+                { name: "Kovai Arisi Paruppu Sadam", image: "images.src/Arisi-Paruppu-sadham.jpg" },
+                { name: "Achees Ice Cream", image: "valparaiimage.src/achees ice cream.jpg" },
+                { name: "Kongu Style Biriyani", image: "images.src/kongunadu briyani.webp" },
+                { name: "Thattai Vada", image:  "thattai-recipe.webp"},
+                { name: "Ellu Urundai", image: "images.src/ellu urundai.jpg" },
+                { name: "Murukku", image: "murukku.jpg" }
+            ],
+            nearbyAttractions: [
+                { name: "Adiyogi Shiva Statue", image: "images.src/adiyogi.jpg" },
+                { name: "Marudamalai Murugan Temple", image: "1-marudhamalai-temple.jpg" },
+                { name: "Gedee Car Museum", image: "images.src/gedee car museum.jpg" },
+                { name: "V O C Park", image: "VOC park.jpg" }
+            ]
+        },
+        keywords: ["Coimbatore", "manchester", "textile", "industrial"]
+      },
+      {
+        name: "Tiruchirappalli (Trichy)",
+        category: "CITY",
+        location: "Kaveri River",
+        img: "trichy city.jpg",
+        description: "Home to the iconic Rockfort Temple and Srirangam, a city with rich cultural and architectural heritage.",
+        bestTime: "October to March",
+        details: {
+            fullDescription: "Trichy is famous for its commanding Rockfort and the massive Sri Ranganathaswamy Temple, making it a critical city in South Indian history and religion.",
+            historicalSignificance: "The city was central to the Carnatic Wars between the British and French, with the Rockfort being a key strategic stronghold.",
+            famousFood: [
+                { name: "Trichy Murukku", image: "trichy murukku.jpg" },
+                { name: "Millet-based snacks", image: "images.src/millet snacks.jpg" },
+                { name: "Sweet Paniyaram", image: "paniyaram.jpg" },
+                { name: "Manapparai Murukku", image: "images.src/manapparai murukku.jpg" },
+                { name: "Palkova", image: "valparaiimage.src/palkova.jpg" },
+                { name: "Masala Dosa", image: "images.src/Masala-Dosa-L1.webp" }
+            ],
+            nearbyAttractions: [
+                { name: "Rockfort Temple", image: "rock-fort-temple.jpg" },
+                { name: "Sri Ranganathaswamy Temple (Srirangam)", image: "Sri-Ranganathaswamy-Temple.webp" },
+                { name: "Kallanai Dam (Grand Anicut)", image: "images.src/Kallanai.webp" },
+                { name: "St. Lourdes Church", image: "lourdes chruch.jpg" }
+            ]
+        },
+        keywords: ["Trichy", "rockfort", "srirangam", "kaveri"]
+      },
+      {
+        name: "Salem",
+        category: "CITY",
+        location: "Thirumanimutharu River",
+        img: "salem city.jpg",
+        description: "A major industrial city, known for its steel plant and mango cultivation, and gateway to Yercaud.",
+        bestTime: "October to March",
+        details: {
+            fullDescription: "Salem is known for its textile manufacturing, mango production, and mineral resources, including the massive Salem Steel Plant. It sits at the base of the Shevaroy Hills.",
+            historicalSignificance: "The city was part of the Kongu Nadu region and has deep agricultural history, later becoming a key hub for the British administration in the region.",
+            famousFood: [
+                { name: "Salem Thattu Vada Set", image: "tattu vadai set.avif" },
+                { name: "Muttichal (sweet)", image: "muttichal.jpg"},
+                { name: "Mutton/Chicken Dosa", image: "mutton dosa.jpg"},
+                { name: "Salem Mangoes", image: "salem mangoes.jpg" },
+                { name: "Attukkal Paya", image: "images.src/attukal paya.jpg" },
+                { name: "Thengai Bun", image: "Thengai-Bun-5.webp" }
+            ],
+            nearbyAttractions: [
+                { name: "Kurumbapatti Zoological Park", image: "images.src/kurumbapatti zoological park.jpg" },
+                { name: "Kottai Mariamman Temple", image: "images.src/kottai mariamman temple.jpg" },
+                { name: "Mettur Dam", image: "images.src/mettur-dam.webp" },
+                { name: "Yercaud (Hill Station)", image: "yercad.jpg" }
+            ]
+        },
+        keywords: ["Salem", "steel", "mango", "industrial"]
+      },
+      {
+        name: "Tirunelveli",
+        category: "CITY",
+        location: "Tamirabarani River",
+        img: "Tirunelveli.jpg",
+        description: "Famous for the Nellaiappar Temple and its unique local sweet, the Iruttu Kadai Halwa.",
+        bestTime: "October to March",
+        details: {
+            fullDescription: "Tirunelveli is characterized by the perennial Tamirabarani River, which divides the city. It is a major educational and commercial center in South Tamil Nadu.",
+            historicalSignificance: "Historically, it was a significant Pandya city and later an important hub under the Madurai Nayaks, known for its traditional education and pearl trade.",
+            famousFood: [
+                { name: "Iruttu Kadai Halwa", image: "images.src/iruttu kadai halwa.jpg" },
+                { name: "Sodhi (coconut milk stew)", image: "sodhi.jpg" },
+                { name: "Kuzhipaniyaram", image: "Kuzhi Paniyaram.jpg" },
+                { name: "Karuveppilai Kuzhambu", image: "images.src/Karuveppilai Kuzhambu.jpg" },
+                { name: "Ulunthangali", image: "Ulunthangali.jpg" },
+                { name: "Borugulu", image: "images.src/Borugulu.jpg" }
+            ],
+            nearbyAttractions: [
+                { name: "Nellaiappar Temple", image: "" },
+                { name: "Siva Moolai Kutralam Falls", image: getPlaceholderImage("Kutralam Falls", "100x70", "F08080") },
+                { name: "Krishnapuram Temple", image: getPlaceholderImage("Krishnapuram Temple", "100x70", "FA8072") },
+                { name: "Kalakkad Mundanthurai Tiger Reserve", image: "kalakkadu mundanthurai tiger.jpg" }
+            ]
+        },
+        keywords: ["Tirunelveli", "halwa", "temple", "tamirabarani"]
+      },
+      {
+        name: "Erode",
+        category: "CITY",
+        location: "Kaveri River",
+        img: "erode.jpg",
+        description: "Known as 'Textile City' and 'Turmeric City', Erode is a major commercial hub for trade.",
+        bestTime: "October to March",
+        details: {
+            fullDescription: "A major agricultural and industrial hub, Erode is the world's largest supplier of turmeric, hence its nickname. It sits strategically on the banks of the Kaveri.",
+            historicalSignificance: "Part of the ancient Kongu Nadu region, it has always been important for river trade. It was a key region during the Mysore wars.",
+            famousFood: [
+                { name: "Erode Kara Sev", image: "" },
+                { name: "Kongu style food", image: getPlaceholderImage("Kongu Food") },
+                { name: "Turmeric-based sweets", image: getPlaceholderImage("Turmeric Sweets") },
+                { name: "Thengai Bun", image: "Thengai-Bun-5.webp" },
+                { name: "Pani Puri", image: getPlaceholderImage("Pani Puri") },
+                { name: "Elaneer Payasam", image: getPlaceholderImage("Elaneer Payasam") }
+            ],
+            nearbyAttractions: [
+                { name: "Bhavani Sagar", image: getPlaceholderImage("Bhavani Sangam", "100x70", "ADD8E6") },
+                { name: "Thindal Murugan Temple", image: getPlaceholderImage("Thindal Temple", "100x70", "87CEEB") },
+                { name: "Vellode Bird Sanctuary", image: getPlaceholderImage("Vellode Sanctuary", "100x70", "B0E0E6") },
+                { name: "Kodiveri Dam", image: getPlaceholderImage("Kodiveri Dam", "100x70", "AFEEEE") }
+            ]
+        },
+        keywords: ["Erode", "textile", "turmeric", "trade"]
+      },
+      {
+        name: "Vellore",
+        category: "CITY",
+        location: "Palar River",
+        img: "vellore.jpg",
+        description: "Historically significant city, home to the massive 16th-century Vellore Fort and the Golden Temple.",
+        bestTime: "October to March",
+        details: {
+            fullDescription: "Vellore serves as a historical and educational center, famous for the Christian Medical College (CMC) and the majestic Vellore Fort.",
+            historicalSignificance: "Site of the Vellore Mutiny in 1806, the first major revolt by Indian sepoys against the British East India Company.",
+            famousFood: [
+                { name: "Vellore Biriyani (Ambur style)", image: getPlaceholderImage("Ambur Biriyani") },
+                { name: "Mandi", image: getPlaceholderImage("Mandi") },
+                { name: "Makkan Peda", image: getPlaceholderImage("Makkan Peda") },
+                { name: "Thooku Vada", image: getPlaceholderImage("Thooku Vada") },
+                { name: "Jalebi", image: getPlaceholderImage("Jalebi") },
+                { name: "Pazham Pori", image: getPlaceholderImage("Pazham Pori") }
+            ],
+            nearbyAttractions: [
+                { name: "Vellore Fort", image: getPlaceholderImage("Vellore Fort", "100x70", "696969") },
+                { name: "Golden Temple (Sripuram)", image: getPlaceholderImage("Golden Temple", "100x70", "D3D3D3") },
+                { name: "Yelagiri Hills (nearby)", image: "yelagiri.jpg" },
+                { name: "Science Park", image: getPlaceholderImage("Science Park", "100x70", "A9A9A9") }
+            ]
+        },
+        keywords: ["Vellore", "fort", "golden+temple", "history"]
+      },
+      {
+        name: "Thanjavur",
+        category: "CITY",
+        location: "Kaveri Delta",
+        img: "thanjavur.png",
+        description: "The 'Rice Bowl of Tamil Nadu' and former capital of the Chola Empire, famous for the UNESCO Brihadeeswarar Temple.",
+        bestTime: "October to March",
+        details: {
+            fullDescription: "Thanjavur is the heartland of Tamil culture, known for its classical arts, painting style, and the vast agricultural delta of the Kaveri river.",
+            historicalSignificance: "Capital of the great Chola dynasty, who built the magnificent Brihadeeswarar Temple, a pinnacle of Dravidian architecture.",
+            famousFood: [
+                { name: "Thanjavur Thalicha Sadam", image: getPlaceholderImage("Thalicha Sadam") },
+                { name: "Asoka Halwa", image: getPlaceholderImage("Asoka Halwa") },
+                { name: "Seeraga Samba Biriyani", image: getPlaceholderImage("Seeraga Biriyani") },
+                { name: "Thavala Adai", image: getPlaceholderImage("Thavala Adai") },
+                { name: "Maa Vilakku", image: getPlaceholderImage("Maa Vilakku") },
+                { name: "Palm Jaggery Sweets", image: getPlaceholderImage("Palm Jaggery Sweets") }
+            ],
+            nearbyAttractions: [
+                { name: "Brihadeeswarar Temple", image: getPlaceholderImage("Brihadeeswarar Temple", "100x70", "8B4513") },
+                { name: "Thanjavur Royal Palace", image: getPlaceholderImage("Royal Palace", "100x70", "A0522D") },
+                { name: "Schwartz Church", image: getPlaceholderImage("Schwartz Church", "100x70", "DEB887") },
+                { name: "Saraswati Mahal Library", image: getPlaceholderImage("Saraswati Library", "100x70", "D2B48C") }
+            ]
+        },
+        keywords: ["Thanjavur", "chola", "unesco", "temple", "rice+bowl"]
+      },
+      {
+        name: "Pondicherry (Puducherry)",
+        category: "CITY",
+        location: "Bay of Bengal Coast",
+        img: "pondicherry.jpg",
+        description: "A Union Territory near Tamil Nadu, known for its French colonial architecture, spiritual aura, and beautiful boulevards.",
+        bestTime: "October to March",
+        details: {
+            fullDescription: "This Union Territory is famous for its unique blend of Tamil and French culture, characterized by the French Quarter and the international community of Auroville.",
+            historicalSignificance: "Remained under French rule for 300 years until 1954, leaving behind a legacy of language, architecture, and cuisine.",
+            famousFood: [
+                { name: "Crêpes and Baguettes", image: getPlaceholderImage("Crepes Baguettes") },
+                { name: "Fish Tawa Fry (Local style)", image: getPlaceholderImage("Fish Tawa Fry") },
+                { name: "Prawn Balchao", image: getPlaceholderImage("Prawn Balchao") },
+                { name: "South Indian Coffee", image: getPlaceholderImage("South Indian Coffee") },
+                { name: "French Croissants", image: getPlaceholderImage("French Croissants") },
+                { name: "Espresso", image: getPlaceholderImage("Espresso") }
+            ],
+            nearbyAttractions: [
+                { name: "Promenade Beach", image: getPlaceholderImage("Promenade Beach", "100x70", "4169E1") },
+                { name: "Aurobindo Ashram", image: getPlaceholderImage("Aurobindo Ashram", "100x70", "6A5ACD") },
+                { name: "Auroville Global Village", image: getPlaceholderImage("Auroville", "100x70", "7B68EE") },
+                { name: "Paradise Beach", image: getPlaceholderImage("Paradise Beach", "100x70", "9370DB") }
+            ]
+        },
+        keywords: ["Pondicherry", "french+colony", "union+territory", "auroville"]
+      },
+
+      // 1. ECO-TOURISM SPOTS (8)
+      {
+        name: "Anamalai Tiger Reserve",
+        category: "ECO-TOURISM SPOTS",
+        location: "Pollachi, Coimbatore",
+        img: "anaimalai tiger reserve.jpg",
+        description: "A biodiverse haven for wildlife, featuring various species of flora and fauna, perfect for safaris and trekking.",
+        bestTime: "October to May",
+        details: {
+            fullDescription: "The reserve is part of the Western Ghats, a UNESCO World Heritage site, and is vital for tiger conservation. It features deciduous forests and montane grasslands.",
+            historicalSignificance: "Known for the presence of the Kadar and Malasar tribes, whose traditional knowledge is key to the forest's preservation.",
+            famousFood: [
+                { name: "Simple Local Meals", image: getPlaceholderImage("Local Meals") },
+                { name: "Forest honey", image: getPlaceholderImage("Forest Honey") },
+                { name: "Tea/Coffee from nearby estates", image: getPlaceholderImage("Estate Tea") },
+                { name: "Herbal Soups", image: getPlaceholderImage("Herbal Soups") },
+                { name: "Bamboo Biryani", image: getPlaceholderImage("Bamboo Biryani") },
+                { name: "Ragi Dosa", image: getPlaceholderImage("Ragi Dosa") }
+            ],
+            nearbyAttractions: [
+                { name: "Top Slip", image: getPlaceholderImage("Top Slip", "100x70", "2E8B57") },
+                { name: "Aliyar Dam", image: getPlaceholderImage("Aliyar Dam", "100x70", "3CB371") },
+                { name: "Monkey Falls", image: getPlaceholderImage("Monkey Falls", "100x70", "6B8E23") },
+                { name: "Karian Shola National Park", image: getPlaceholderImage("Karian Shola", "100x70", "8FBC8F") }
+            ]
+        },
+        keywords: ["tiger", "wildlife", "safari", "forest", "nature"]
+      },
+      {
+        name: "Vedanthangal Bird Sanctuary",
+        category: "ECO-TOURISM SPOTS",
+        location: "Chengalpattu District",
+        img: "vedanthangal bird sanctuary.jpg",
+        description: "One of the oldest water bird sanctuaries, attracting migratory birds from around the world.",
+        bestTime: "November to March",
+        details: {
+            fullDescription: "This tiny sanctuary becomes a vibrant breeding ground for thousands of migratory birds, including storks, pelicans, and herons.",
+            historicalSignificance: "Local villagers successfully petitioned the Nawab of Carnatic centuries ago to protect the water bodies for the birds, making it a centuries-old community conservation effort.",
+            famousFood: [
+                { name: "Simple Local Meals", image: getPlaceholderImage("Local Meals") },
+                { name: "Filter Coffee", image: getPlaceholderImage("Filter Coffee") },
+                { name: "Traditional Village Food", image: getPlaceholderImage("Village Food") },
+                { name: "Fresh Juice", image: getPlaceholderImage("Fresh Juice") }
+            ],
+            nearbyAttractions: [
+                { name: "Madurantakam Lake", image: getPlaceholderImage("Madurantakam Lake", "100x70", "4682B4") },
+                { name: "Kancheepuram Temples (nearby)", image: getPlaceholderImage("Kancheepuram Temples", "100x70", "6495ED") },
+                { name: "Uthiramerur", image: getPlaceholderImage("Uthiramerur", "100x70", "87CEEB") },
+                { name: "Palavakkam Beach", image: getPlaceholderImage("Palavakkam Beach", "100x70", "AFEEEE") }
+            ]
+        },
+        keywords: ["birds", "sanctuary", "migratory", "lake"]
+      },
+      {
+        name: "Kalakkad Mundanthurai Tiger Reserve",
+        category: "ECO-TOURISM SPOTS",
+        location: "Tirunelveli/Kanyakumari",
+        img: "kalakkadu mundanthurai tiger.jpg",
+        description: "Known as the River Sanctuary, it's one of the best protected areas for the Malabar and Malayan species.",
+        bestTime: "October to March",
+        details: generateSmartDetails("Kalakkad Mundanthurai Tiger Reserve", "ECO-TOURISM SPOTS", "Tirunelveli/Kanyakumari"),
+        keywords: ["tiger", "wildlife", "river", "reserve"]
+      },
+      {
+        name: "Meghamalai Wildlife Sanctuary",
+        category: "ECO-TOURISM SPOTS",
+        location: "Theni District",
+        img: "meghamalai wildlife sanctuary.jpg",
+        description: "The High Wavy Mountains, offering scenic views, pristine forests, and rich elephant and big cat populations.",
+        bestTime: "October to May",
+        details: generateSmartDetails("Meghamalai Wildlife Sanctuary", "ECO-TOURISM SPOTS", "Theni District"),
+        keywords: ["mountains", "wildlife", "forest", "elephant"]
+      },
+      {
+        name: "Mukurthi National Park",
+        category: "ECO-TOURISM SPOTS",
+        location: "Nilgiris District",
+        img: "mikurthi national park.jpg",
+        description: "Established to protect the Nilgiri Tahr, offering rolling grasslands and shola forests in a high-altitude ecosystem.",
+        bestTime: "February to May, September to November",
+        details: generateSmartDetails("Mukurthi National Park", "ECO-TOURISM SPOTS", "Nilgiris District"),
+        keywords: ["Nilgiri+Tahr", "national+park", "grasslands", "shola"]
+      },
+      {
+        name: "Hogenakkal Falls",
+        category: "ECO-TOURISM SPOTS",
+        location: "Dharmapuri",
+        img: "hogenkkal falls.jpg",
+        description: "Known as the 'Niagara of India', famous for its medicinal baths and thrilling coracle rides.",
+        bestTime: "August to March",
+        details: generateSmartDetails("Hogenakkal Falls", "ECO-TOURISM SPOTS", "Dharmapuri"),
+        keywords: ["waterfall", "coracle", "nature", "medicinal"]
+      },
+      {
+        name: "Kolli Hills",
+        category: "ECO-TOURISM SPOTS",
+        location: "Namakkal District",
+        img: "killo hills.jpg",
+        description: "An unspoiled mountain range famous for its 70 continuous hairpin bends and natural beauty.",
+        bestTime: "March to June, August to December",
+        details: {
+            fullDescription: "The Kolli Hills ('Mountains of Death') is a small mountain range known for its pristine air, Arapaleeswarar Temple, and the challenging drive through 70 continuous hairpin bends.",
+            historicalSignificance: "Mentioned in classical Tamil literature, it is associated with mythical sage Agasthyar and a center of traditional Siddhar medicine.",
+            famousFood: [
+                { name: "Local Millets (Ragi, Samai)", image: getPlaceholderImage("Local Millets") },
+                { name: "Jungle Honey", image: getPlaceholderImage("Jungle Honey") },
+                { name: "Hill Fruits", image: getPlaceholderImage("Hill Fruits") },
+                { name: "Herbal Porridge", image: getPlaceholderImage("Herbal Porridge") }
+            ],
+            nearbyAttractions: [
+                { name: "Arapaleeswarar Temple", image: getPlaceholderImage("Arapaleeswarar Temple", "100x70", "A52A2A") },
+                { name: "Agaya Gangai Waterfalls", image: getPlaceholderImage("Agaya Gangai Falls", "100x70", "8B4513") },
+                { name: "Siddhar Caves", image: getPlaceholderImage("Siddhar Caves", "100x70", "D2B48C") },
+                { name: "Seekuparai Viewpoint", image: getPlaceholderImage("Seekuparai Viewpoint", "100x70", "CD853F") }
+            ]
+        },
+        keywords: ["hills", "hairpin", "unspoiled", "trekking"]
+      },
+      {
+        name: "MGM (Meghamalai)",
+        category: "ECO-TOURISM SPOTS",
+        location: "Theni District",
+        img: "meghamalai.jpg",
+        description: "A serene, lesser-known region of the High Wavy Mountains, excellent for quiet nature retreats.",
+        bestTime: "October to May",
+        details: generateSmartDetails("MGM (Meghamalai)", "ECO-TOURISM SPOTS", "Theni District"),
+        keywords: ["hills", "retreat", "nature", "scenic"]
+      },
+
+      // 2. HERTIAGE SITES (8) - Generated Details
+      {
+        name: "Anamalai Tiger Reserve (Heritage)",
+        category: "HERTIAGE SITES",
+        location: "Pollachi, Coimbatore",
+        img: "anaimalai tiger reserve.jpg",
+        description: "A region rich in tribal history and ancient forest management practices.",
+        bestTime: "October to May",
+        details: generateSmartDetails("Anamalai Tiger Reserve", "HERTIAGE SITES", "Pollachi, Coimbatore"),
+        keywords: ["tiger", "tribal", "forest", "history"]
+      },
+      {
+        name: "Vedanthangal Bird Sanctuary (Heritage)",
+        category: "HERTIAGE SITES",
+        location: "Chengalpattu District",
+        img: "vedanthangal bird sanctuary.jpg",
+        description: "Historically protected sanctuary, showcasing traditional conservation efforts over centuries.",
+        bestTime: "November to March",
+        details: generateSmartDetails("Vedanthangal Bird Sanctuary", "HERTIAGE SITES", "Chengalpattu District"),
+        keywords: ["birds", "conservation", "history", "sanctuary"]
+      },
+      {
+        name: "Kalakkad Mundanthurai Tiger Reserve (Heritage)",
+        category: "HERTIAGE SITES",
+        location: "Tirunelveli/Kanyakumari",
+        img: "kalakkadu mundanthurai tiger.jpg",
+        description: "Part of the Agasthyamalai Biosphere, an area with deep mythological and traditional significance.",
+        bestTime: "October to March",
+        details: generateSmartDetails("Kalakkad Mundanthurai Tiger Reserve", "HERTIAGE SITES", "Tirunelveli/Kanyakumari"),
+        keywords: ["tiger", "mythology", "tradition", "biosphere"]
+      },
+      {
+        name: "Meghamalai (Heritage)",
+        category: "HERTIAGE SITES",
+        location: "Theni District",
+        img: "meghamalai.jpg",
+        description: "Home to historical tea and coffee estates and colonial-era bungalows.",
+        bestTime: "October to May",
+        details: generateSmartDetails("Meghamalai", "HERTIAGE SITES", "Theni District"),
+        keywords: ["tea+estate", "colonial", "bungalows", "hills"]
+      },
+      {
+        name: "Mukurthi National Park (Heritage)",
+        category: "HERTIAGE SITES",
+        location: "Nilgiris District",
+        img: "mikurthi national park.jpg",
+        description: "The high peaks are considered sacred by the local Toda tribal community.",
+        bestTime: "February to May, September to November",
+        details: generateSmartDetails("Mukurthi National Park", "HERTIAGE SITES", "Nilgiris District"),
+        keywords: ["Nilgiris", "Toda", "sacred", "tribal"]
+      },
+      {
+        name: "Hogenakkal Falls (Heritage)",
+        category: "HERTIAGE SITES",
+        location: "Dharmapuri",
+        img: "hogenkkal falls.jpg",
+        description: "Historically significant as a boundary and trade route on the River Kaveri.",
+        bestTime: "August to March",
+        details: generateSmartDetails("Hogenakkal Falls", "HERTIAGE SITES", "Dharmapuri"),
+        keywords: ["waterfall", "kaveri", "river", "trade+route"]
+      },
+      {
+        name: "Kolli Hills (Heritage)",
+        category: "HERTIAGE SITES",
+        location: "Namakkal District",
+        img: "killo hills.jpg",
+        description: "Mentioned in classical Tamil literature, known for its temples and spiritual history.",
+        bestTime: "March to June, August to December",
+        details: generateSmartDetails("Kolli Hills", "HERTIAGE SITES", "Namakkal District"),
+        keywords: ["hills", "literature", "temples", "spiritual"]
+      },
+      {
+        name: "MGM (Meghamalai) (Heritage)",
+        category: "HERTIAGE SITES",
+        location: "Theni District",
+        img: "meghamalai.jpg",
+        description: "A tranquil area associated with ancient local legends and folk tales.",
+        bestTime: "October to May",
+        details: generateSmartDetails("MGM (Meghamalai)", "HERTIAGE SITES", "Theni District"),
+        keywords: ["hills", "legends", "folk+tales", "ancient"]
+      },
+      
+      // 3. HILL STATIONS (8)
+      {
+        name: "Ooty (Udhagamandalam)",
+        category: "HILL STATIONS",
+        location: "Nilgiris District",
+        img: "ooty.jpg",
+        description: "The 'Queen of Hill Stations', famous for its botanical gardens, charming lakes, and Nilgiri Mountain Railway.",
+        bestTime: "April to June, September to November",
+        details: {
+            fullDescription: "A popular colonial-era summer retreat, Ooty is famous for its serene lake, beautiful gardens, and the narrow-gauge Nilgiri Mountain Railway, a UNESCO World Heritage Site.",
+            historicalSignificance: "Discovered by the British in the 19th century, it served as the summer capital of the Madras Presidency, leading to the development of its unique European architecture and infrastructure.",
+            famousFood: [
+                { name: "Homemade Chocolates", image: getPlaceholderImage("Ooty Chocolates") },
+                { name: "Varkey", image: getPlaceholderImage("Varkey") },
+                { name: "Ooty Tea", image: getPlaceholderImage("Ooty Tea") },
+                { name: "Honey", image: getPlaceholderImage("Ooty Honey") },
+                { name: "Carrot Cake", image: getPlaceholderImage("Carrot Cake") },
+                { name: "Doughnuts", image: getPlaceholderImage("Doughnuts") }
+            ],
+            nearbyAttractions: [
+                { name: "Ooty Lake", image: getPlaceholderImage("Ooty Lake", "100x70", "008B8B") },
+                { name: "Botanical Gardens", image: getPlaceholderImage("Botanical Gardens", "100x70", "20B2AA") },
+                { name: "Doddabetta Peak", image: getPlaceholderImage("Doddabetta Peak", "100x70", "48D1CC") },
+                { name: "Nilgiri Mountain Railway", image: getPlaceholderImage("NMR", "100x70", "66CDAA") }
+            ]
+        },
+        keywords: ["Ooty", "queen+of+hills", "gardens", "lake", "railway"]
+      },
+      {
+        name: "Kodaikanal",
+        category: "HILL STATIONS",
+        location: "Dindigul District",
+        img: "kodaikanal.jpg",
+        description: "The 'Princess of Hill Stations', known for its misty weather, star-shaped lake, and lush forests.",
+        bestTime: "April to June, September to October",
+        details: {
+            fullDescription: "Kodaikanal ('The Gift of the Forest') is defined by its beautiful Kodaikanal Lake and surrounding Palani Hills. It has a cooler climate and is a popular honeymoon destination.",
+            historicalSignificance: "Founded by American missionaries in 1845, it retains a charm influenced by its missionary past, particularly in its architecture and schools.",
+            famousFood: [
+                { name: "Homemade Chocolates", image: getPlaceholderImage("Kodi Chocolates") },
+                { name: "Pear/Plum/Peach Jams", image: getPlaceholderImage("Kodi Jams") },
+                { name: "Masala Bhajji", image: getPlaceholderImage("Masala Bhajji") },
+                { name: "Hot Tea", image: getPlaceholderImage("Hot Tea") },
+                { name: "Cheese and Mushroom Omelette", image: getPlaceholderImage("Mushroom Omelette") },
+                { name: "Veggie Burgers", image: getPlaceholderImage("Veggie Burgers") }
+            ],
+            nearbyAttractions: [
+                { name: "Kodaikanal Lake", image: getPlaceholderImage("Kodaikanal Lake", "100x70", "00CED1") },
+                { name: "Coaker's Walk", image: getPlaceholderImage("Coaker's Walk", "100x70", "40E0D0") },
+                { name: "Pillar Rocks", image: getPlaceholderImage("Pillar Rocks", "100x70", "AFEEEE") },
+                { name: "Bear Shola Falls", image: getPlaceholderImage("Bear Shola Falls", "100x70", "7FFFD4") }
+            ]
+        },
+        keywords: ["Kodaikanal", "princess", "lake", "misty"]
+      },
+      {
+        name: "Yercaud",
+        category: "HILL STATIONS",
+        location: "Salem District",
+        img: "yercad.jpg",
+        description: "Nestled in the Shevaroy Hills, known for its pleasant climate, coffee plantations, and the Emerald Lake.",
+        bestTime: "October to June",
+        details: generateSmartDetails("Yercaud", "HILL STATIONS", "Salem District"),
+        keywords: ["Yercaud", "coffee+plantation", "emerald+lake", "serene"]
+      },
+      {
+        name: "Coonoor",
+        category: "HILL STATIONS",
+        location: "Nilgiris District",
+        img: "coonoor.jpg",
+        description: "A quieter alternative to Ooty, famous for Sim's Park and the stunning panoramic views of the Nilgiris.",
+        bestTime: "October to March",
+        details: generateSmartDetails("Coonoor", "HILL STATIONS", "Nilgiris District"),
+        keywords: ["Coonoor", "tea+gardens", "sim's+park", "nilgiris"]
+      },
+      {
+        name: "Kotagiri",
+        category: "HILL STATIONS",
+        location: "Nilgiris District",
+        img: "kotagiri.jpg",
+        description: "The oldest and smallest of the Nilgiri hill stations, known for its trekking trails and Catherine Falls.",
+        bestTime: "December to May",
+        details: generateSmartDetails("Kotagiri", "HILL STATIONS", "Nilgiris District"),
+        keywords: ["Kotagiri", "trekking", "catherine+falls", "tea+estates"]
+      },
+      {
+        name: "Valparai",
+        category: "HILL STATIONS",
+        location: "Coimbatore District",
+        img: "valparai.jpg",
+        description: "Surrounded by dense forest and vast tea estates in the Anamalai mountains, a great spot for wildlife enthusiasts.",
+        bestTime: "September to March",
+        details: generateSmartDetails("Valparai", "HILL STATIONS", "Coimbatore District"),
+        keywords: ["Valparai", "tea+estates", "wildlife", "anamalai"]
+      },
+      {
+        name: "Meghamalai (Hill Station)",
+        category: "HILL STATIONS",
+        location: "Theni District",
+        img: "meghamalai.jpg",
+        description: "The High Wavy Mountains, offering unpolluted nature, misty peaks, and spectacular viewpoints.",
+        bestTime: "October to May",
+        details: generateSmartDetails("Meghamalai (Hill Station)", "HILL STATIONS", "Theni District"),
+        keywords: ["Meghamalai", "misty", "viewpoints", "nature"]
+      },
+      {
+        name: "Yelagiri",
+        category: "HILL STATIONS",
+        location: "Vellore District",
+        img: "yelagiri.jpg",
+        description: "A small hill station known for its simple charms, Punganoor Lake, and various adventure sports activities.",
+        bestTime: "November to February",
+        details: generateSmartDetails("Yelagiri", "HILL STATIONS", "Vellore District"),
+        keywords: ["Yelagiri", "adventure", "lake", "trekking"]
+      },
+
+      // 4. COSTAL (8) - Generated Details
+      {
+        name: "Chennai Coast",
+        category: "COSTAL",
+        location: "Chennai",
+        img: "chennai coast.webp",
+        description: "The bustling capital and a major urban center with a significant coastline, home to Marina Beach.",
+        bestTime: "November to February",
+        details: generateSmartDetails("Chennai Coast", "COSTAL", "Chennai"),
+        keywords: ["Chennai", "urban", "port", "capital"]
+      },
+      {
+        name: "Kanyakumari Coast",
+        category: "COSTAL",
+        location: "Kanyakumari",
+        img: "kanyakumari beach.jpg",
+        description: "The confluence of three seas (Indian Ocean, Bay of Bengal, and Arabian Sea).",
+        bestTime: "October to March",
+        details: {
+            fullDescription: "The tip of mainland India, the coastal region of Kanyakumari is unique for being the spot where you can see the sun rise and set over the water, thanks to the confluence of three major water bodies.",
+            historicalSignificance: "A major religious and spiritual center, historically it was a key port for ancient dynasties and a prominent trading point.",
+            famousFood: [
+                { name: "Coastal Fish Curry", image: getPlaceholderImage("Fish Curry") },
+                { name: "Tapioca dishes", image: getPlaceholderImage("Tapioca Dishes") },
+                { name: "Ayira Meen Kuzhambu", image: getPlaceholderImage("Ayira Meen Kuzhambu") },
+                { name: "Pazham Pori", image: getPlaceholderImage("Pazham Pori") },
+                { name: "Sea Food Platter", image: getPlaceholderImage("Sea Food Platter") },
+                { name: "Nungu Sarbath", image: getPlaceholderImage("Nungu Sarbath") }
+            ],
+            nearbyAttractions: [
+                { name: "Vivekananda Rock Memorial", image: getPlaceholderImage("Vivekananda Rock", "100x70", "483D8B") },
+                { name: "Thiruvalluvar Statue", image: getPlaceholderImage("Thiruvalluvar Statue", "100x70", "6A5ACD") },
+                { name: "Kumari Amman Temple", image: getPlaceholderImage("Kumari Amman Temple", "100x70", "8A2BE2") },
+                { name: "Padmanabhapuram Palace", image: getPlaceholderImage("Padmanabhapuram Palace", "100x70", "9370DB") }
+            ]
+        },
+        keywords: ["Kanyakumari", "confluence", "vivekananda", "seas"]
+      },
+      {
+        name: "Cuddalore Coast",
+        category: "COSTAL",
+        location: "Cuddalore",
+        img: "cuddalore coast.jpg",
+        description: "Coastal district famous for the Pichavaram mangrove forests and the tranquil Silver Beach.",
+        bestTime: "October to March",
+        details: generateSmartDetails("Cuddalore Coast", "COSTAL", "Cuddalore"),
+        keywords: ["Cuddalore", "mangrove", "silver+beach", "fishing"]
+      },
+      {
+        name: "Nagapattinam Coast",
+        category: "COSTAL",
+        location: "Nagapattinam",
+        img: "nagapattinam coast.jpg",
+        description: "Situated along the Coromandel Coast and known for the ancient Velankanni Church and a historic major port.",
+        bestTime: "November to March",
+        details: generateSmartDetails("Nagapattinam Coast", "COSTAL", "Nagapattinam"),
+        keywords: ["Nagapattinam", "coromandel", "velankanni", "port"]
+      },
+      {
+        name: "Ramanathapuram Coast",
+        category: "COSTAL",
+        location: "Ramanathapuram",
+        img: "ramanathapuram coast.jpg",
+        description: "Famous for the Pamban Island, Dhanushkodi, and being a gateway to the Gulf of Mannar Biosphere Reserve.",
+        bestTime: "October to April",
+        details: generateSmartDetails("Ramanathapuram Coast", "COSTAL", "Ramanathapuram"),
+        keywords: ["Ramanathapuram", "gulf+of+mannar", "dhanushkodi", "pamban"]
+      },
+      {
+        name: "Thoothukudi (Tuticorin) Coast",
+        category: "COSTAL",
+        location: "Thoothukudi",
+        img: "Tuticorin-Main.jpg",
+        description: "A major port city on the Gulf of Mannar, historically known for pearl diving and shipping.",
+        bestTime: "October to March",
+        details: generateSmartDetails("Thoothukudi (Tuticorin) Coast", "COSTAL", "Thoothukudi"),
+        keywords: ["Thoothukudi", "port+city", "pearl+diving", "gulf+of+mannar"]
+      },
+      {
+        name: "Villupuram Coast",
+        category: "COSTAL",
+        location: "Villupuram",
+        img: "vilupuram coast.jpg",
+        description: "Shares a coastal boundary with the Bay of Bengal, offering serene and less crowded beach areas.",
+        bestTime: "November to February",
+        details: generateSmartDetails("Villupuram Coast", "COSTAL", "Villupuram"),
+        keywords: ["Villupuram", "serene+beach", "bay+of+bengal"]
+      },
+      {
+        name: "Thanjavur Coast",
+        category: "COSTAL",
+        location: "Thanjavur District",
+        img: "thanhjavur coast.jpg",
+        description: "Known for the historical port of Poompuhar, which lies on its coastline, linking it to ancient Chola trade routes.",
+        bestTime: "October to March",
+        details: generateSmartDetails("Thanjavur Coast", "COSTAL", "Thanjavur District"),
+        keywords: ["Thanjavur", "poompuhar", "chola", "trade+route"]
+      },
+
+      // 5. BEACH (8) - Generated Details
+      {
+        name: "Marina Beach",
+        category: "BEACH",
+        location: "Chennai",
+        img: "marina beach.jpg",
+        description: "The world's second-longest urban beach stretching 13km along the Bay of Bengal.",
+        bestTime: "October to March",
+        details: {
+            fullDescription: "Marina is the longest natural urban beach in India and the second longest in the world. It is the lifeblood of Chennai, bustling with activity from dawn till dusk.",
+            historicalSignificance: "Developed and formally named during the British Raj. It has been a site for political rallies, cultural events, and independence movements.",
+            famousFood: [
+                { name: "Sundal (Chickpea salad)", image: getPlaceholderImage("Sundal") },
+                { name: "Milagu Bajji (Chili fritters)", image: getPlaceholderImage("Milagu Bajji") },
+                { name: "Sweet Corn", image: getPlaceholderImage("Sweet Corn") },
+                { name: "Seafood on the stalls", image: getPlaceholderImage("Beach Seafood") },
+                { name: "Nungu Sarbath", image: getPlaceholderImage("Nungu Sarbath") },
+                { name: "Kulfi", image: getPlaceholderImage("Kulfi") }
+            ],
+            nearbyAttractions: [
+                { name: "Light House", image: getPlaceholderImage("Marina Lighthouse", "100x70", "FF7F50") },
+                { name: "Statue of Mahatma Gandhi", image: getPlaceholderImage("Gandhi Statue", "100x70", "F08080") },
+                { name: "Vivekananda House", image: getPlaceholderImage("Vivekananda House", "100x70", "FA8072") },
+                { name: "Ice House", image: getPlaceholderImage("Ice House", "100x70", "E9967A") }
+            ]
+        },
+        keywords: ["Chennai", "urban", "long", "vibrant"]
+      },
+      {
+        name: "Mahabalipuram Beach",
+        category: "BEACH",
+        location: "Mahabalipuram",
+        img: "Mahabalipuram Beach.jpg",
+        description: "Culturally rich beach set against the backdrop of UNESCO World Heritage rock-cut temples.",
+        bestTime: "October to March",
+        details: generateSmartDetails("Mahabalipuram Beach", "BEACH", "Mahabalipuram"),
+        keywords: ["Mahabalipuram", "heritage", "unesco", "rock-cut"]
+      },
+      {
+        name: "Kanyakumari Beach",
+        category: "BEACH",
+        location: "Kanyakumari",
+        img: "kanyakumari beach.jpg",
+        description: "Picturesque beach famous for its unique Triveni Sangam and breathtaking sunrises/sunsets.",
+        bestTime: "October to March",
+        details: generateSmartDetails("Kanyakumari Beach", "BEACH", "Kanyakumari"),
+        keywords: ["Kanyakumari", "sunrise", "sunset", "triveni"]
+      },
+      {
+        name: "Dhanushkodi Beach",
+        category: "BEACH",
+        location: "Ramanathapuram",
+        img: "dhanushkodi.jpg",
+        description: "The historic 'Ghost Town' beach where the Bay of Bengal and Indian Ocean meet, featuring haunting ruins.",
+        bestTime: "October to April",
+        details: generateSmartDetails("Dhanushkodi Beach", "BEACH", "Ramanathapuram"),
+        keywords: ["Dhanushkodi", "ghost+town", "ruins", "ocean"]
+      },
+      {
+        name: "Elliot's Beach (Besant Nagar Beach)",
+        category: "BEACH",
+        location: "Chennai",
+        img: "elliot's beach.webp",
+        description: "A calmer, less crowded alternative to Marina, known for the Schmidt Memorial and its café culture.",
+        bestTime: "October to March",
+        details: generateSmartDetails("Elliot's Beach", "BEACH", "Chennai"),
+        keywords: ["Elliot's", "Besant+Nagar", "cafe", "calm"]
+      },
+      {
+        name: "Covelong Beach",
+        category: "BEACH",
+        location: "Chengalpattu District",
+        img: "covelong-beach.jpg",
+        description: "A relaxing beach and fishing village popular for water sports like windsurfing and surfing.",
+        bestTime: "October to March",
+        details: generateSmartDetails("Covelong Beach", "BEACH", "Chengalpattu District"),
+        keywords: ["Covelong", "water+sports", "fishing", "surfing"]
+      },
+      {
+        name: "Silver Beach",
+        category: "BEACH",
+        location: "Cuddalore",
+        img: "silver beach.jpg",
+        description: "The second-longest urban beach in Asia, featuring a children's park and tranquil boat rides.",
+        bestTime: "October to March",
+        details: generateSmartDetails("Silver Beach", "BEACH", "Cuddalore"),
+        keywords: ["Silver+Beach", "cuddalore", "long", "boat+rides"]
+      },
+      {
+        name: "Poompuhar Beach",
+        category: "BEACH",
+        location: "Nagapattinam District",
+        img: "poompuhar.jpg",
+        description: "Associated with the ancient Chola port city, featuring an art gallery depicting the epic Silapathikaram.",
+        bestTime: "October to March",
+        details: generateSmartDetails("Poompuhar Beach", "BEACH", "Nagapattinam District"),
+        keywords: ["Poompuhar", "chola", "ancient", "silapathikaram"]
+      }
+    ];
+    
+    // ----------------------------------------------------------------------
+    // --- START OF JAVASCRIPT LOGIC (Unchanged from previous response) ---
+    // ----------------------------------------------------------------------
+
+    // Check all entries to ensure they have the 'details' object
+    destinationsData.forEach(dest => {
+        if (!dest.details) {
+            dest.details = generateSmartDetails(dest.name, dest.category, dest.location);
+        }
+    });
+
+    const destinationsGrid = document.getElementById('destinations-grid');
+    const searchInput = document.getElementById('search-input');
+    const categoryFilterBtn = document.getElementById('category-filter-btn');
+    const categoryFilterDropdown = document.getElementById('category-filter-dropdown');
+    const selectedCategoryText = document.getElementById('selected-category-text');
+    const numDestinationsShown = document.getElementById('num-destinations-shown');
+    
+    // --- New DOM elements for page control ---
+    const mainContentGrid = document.getElementById('main-content-grid');
+    const detailsPage = document.getElementById('details-page');
+
+    let currentFilter = 'All'; 
+    let currentSearchTerm = ''; 
+
+    /**
+     * Renders destination cards (main grid view).
+     */
+    function renderDestinations() {
+      let filtered = destinationsData;
+
+      // Apply search filter
+      if (currentSearchTerm) {
+        const lowerCaseSearchTerm = currentSearchTerm.toLowerCase();
+        filtered = filtered.filter(dest =>
+          dest.name.toLowerCase().includes(lowerCaseSearchTerm) ||
+          dest.location.toLowerCase().includes(lowerCaseSearchTerm) ||
+          dest.description.toLowerCase().includes(lowerCaseSearchTerm) ||
+          dest.category.toLowerCase().includes(lowerCaseSearchTerm) ||
+          (dest.keywords && dest.keywords.some(keyword => keyword.toLowerCase().includes(lowerCaseSearchTerm)))
+        );
+      }
+
+      // Apply category filter
+      if (currentFilter !== 'All') {
+        filtered = filtered.filter(dest => dest.category === currentFilter);
+      }
+
+      destinationsGrid.innerHTML = ''; // Clear existing cards
+      numDestinationsShown.textContent = `Showing ${filtered.length} destinations`;
+
+      if (filtered.length === 0) {
+        destinationsGrid.innerHTML = '<p style="text-align: center; color: var(--light-text); font-size: 1.1em;">No destinations found matching your criteria.</p>';
+        return;
+      }
+
+      filtered.forEach(dest => {
+        const card = document.createElement('div');
+        card.classList.add('destination-card');
+        card.innerHTML = `
+          <div class="card-image-wrapper">
+            <img src="${dest.img}" alt="${dest.name}" class="card-image">
+            <span class="card-category-tag">${dest.category}</span>
+          </div>
+          <div class="card-content">
+            <div>
+              <h3>${dest.name}</h3>
+              <p class="card-location"><i class="fas fa-map-marker-alt"></i> ${dest.location}</p>
+              <p class="card-description">${dest.description}</p>
+            </div>
+            <div>
+              <p class="card-meta"><i class="far fa-clock"></i> Best time: ${dest.bestTime}</p>
+              <button class="explore-btn" data-destination="${dest.name}">
+                Explore Destination <i class="fas fa-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+        `;
+        destinationsGrid.appendChild(card);
+      });
+      
+      // Add event listeners for the new buttons
+      document.querySelectorAll('.explore-btn').forEach(button => {
+          button.addEventListener('click', (e) => {
+              const destName = e.currentTarget.getAttribute('data-destination');
+              showDetails(destName);
+          });
+      });
+    }
+
+    /**
+     * Switches to the main grid view.
+     */
+    function goBack() {
+        mainContentGrid.style.display = 'block';
+        detailsPage.style.display = 'none';
+        document.getElementById('main-hero').style.display = 'block';
+        document.getElementById('main-search-filter').style.display = 'flex';
+        // Scroll to top of grid
+        window.scrollTo(0, 0);
+    }
+
+
+    /**
+     * Switches to the details view and populates it with destination data.
+     * @param {string} destinationName - The name of the destination to display.
+     */
+    function showDetails(destinationName) {
+        const dest = destinationsData.find(d => d.name === destinationName);
+
+        if (!dest || !dest.details) {
+            detailsPage.innerHTML = `<button class="back-btn" onclick="goBack()"><i class="fas fa-arrow-left"></i> Back to Destinations</button><h2>Error</h2><p>Destination details not found.</p>`;
+            return;
+        }
+
+        const details = dest.details;
+        const fullDescription = details.fullDescription || dest.description;
+        const historicalSignificance = details.historicalSignificance || "Historical significance details are being compiled for this location.";
+        const famousFood = details.famousFood || [{ name: "Local Cuisine", image: getPlaceholderImage("Local Cuisine") }];
+        const nearbyAttractions = details.nearbyAttractions || [{ name: "Local attractions", image: getPlaceholderImage("Local Attractions") }];
+
+        // Helper function to convert array of objects to list HTML with images
+        const createListWithImagesHTML = (items) => `
+            <ul>
+                ${items.map(item => `
+                    <li>
+                        <img src="${item.image}" alt="${item.name}">
+                        <span>${item.name}</span>
+                    </li>
+                `).join('')}
+            </ul>
+        `;
+
+        detailsPage.innerHTML = `
+            <button class="back-btn" onclick="goBack()"><i class="fas fa-arrow-left"></i> Back to Destinations</button>
+            <div class="header-image-wrapper" style="background: url('${dest.img}') no-repeat center center/cover; height: 300px; border-radius: 8px; margin-bottom: 20px;"></div>
+            <h2>${dest.name} <span style="font-size: 0.6em; color: var(--secondary-orange);">(${dest.location})</span></h2>
+
+            <div class="detail-section">
+                <h3><i class="fas fa-info-circle"></i> About ${dest.name}</h3>
+                <p>${fullDescription}</p>
+            </div>
+
+            <div class="detail-section">
+                <h3><i class="fas fa-landmark"></i> Historical Significance</h3>
+                <p>${historicalSignificance}</p>
+            </div>
+
+            <div class="detail-section">
+                <h3><i class="fas fa-utensils"></i> Famous Local Food</h3>
+                ${createListWithImagesHTML(famousFood)}
+            </div>
+
+            <div class="detail-section">
+                <h3><i class="fas fa-mountain"></i> Nearby Attractions</h3>
+                ${createListWithImagesHTML(nearbyAttractions)}
+            </div>
+        `;
+
+        // --- Toggle view ---
+        document.getElementById('main-hero').style.display = 'none';
+        document.getElementById('main-search-filter').style.display = 'none';
+        mainContentGrid.style.display = 'none';
+        detailsPage.style.display = 'block';
+        
+        // Scroll to the top of the detail page
+        window.scrollTo(0, 0);
+    }
+
+
+    /**
+     * Populates the category filter dropdown and sets up event listeners.
+     */
+    function setupCategoryFilters() {
+      const uniqueCategories = ['All', ...new Set(destinationsData.map(d => d.category))].sort();
+
+      categoryFilterDropdown.innerHTML = '';
+      uniqueCategories.forEach(category => {
+        const listItem = document.createElement('li');
+        listItem.textContent = category === 'All' ? 'All Categories' : category;
+        listItem.setAttribute('data-category', category);
+        if (category === currentFilter) {
+          listItem.classList.add('selected');
+        }
+        categoryFilterDropdown.appendChild(listItem);
+      });
+
+      categoryFilterBtn.addEventListener('click', () => {
+        categoryFilterDropdown.classList.toggle('show');
+        categoryFilterBtn.classList.toggle('active-filter');
+      });
+
+      categoryFilterDropdown.addEventListener('click', (event) => {
+        const selectedLi = event.target.closest('li');
+        if (selectedLi) {
+          const newCategory = selectedLi.getAttribute('data-category');
+          currentFilter = newCategory;
+          selectedCategoryText.textContent = newCategory === 'All' ? 'All Categories' : newCategory;
+          
+          document.querySelectorAll('#category-filter-dropdown li').forEach(li => li.classList.remove('selected'));
+          selectedLi.classList.add('selected');
+
+          categoryFilterDropdown.classList.remove('show');
+          categoryFilterBtn.classList.remove('active-filter');
+          renderDestinations();
+        }
+      });
+
+      document.addEventListener('click', (event) => {
+        if (!categoryFilterBtn.contains(event.target) && !categoryFilterDropdown.contains(event.target)) {
+          categoryFilterDropdown.classList.remove('show');
+          categoryFilterBtn.classList.remove('active-filter');
+        }
+      });
+    }
+
+    // Event listener for search input
+    searchInput.addEventListener('input', (event) => {
+      currentSearchTerm = event.target.value;
+      renderDestinations();
+    });
+
+    // Initial setup and render
+    setupCategoryFilters();
+    renderDestinations();
+  </script>
+
+</body>
+</html>
