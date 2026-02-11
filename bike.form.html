@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Bike Booking Form</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+  body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #0099f7 0%, #f11712 100%);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+  .booking-container {
+    background: #fff;
+    width: 400px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    overflow: hidden;
+  }
+  .booking-header {
+    padding: 24px 20px 0 20px;
+    font-weight: 600;
+    font-size: 22px;
+    color: #222;
+    text-align: center;
+  }
+  .details {
+    padding: 0 20px 20px 20px;
+    color: #555;
+    font-size: 16px;
+  }
+  .details strong {
+    color: #000;
+  }
+  label {
+    display: block;
+    margin: 15px 0 6px;
+    font-weight: 600;
+    color: #222;
+  }
+  select, input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1.8px solid #ddd;
+    font-size: 15px;
+  }
+  select:focus, input[type="number"]:focus {
+    border-color: #f11712;
+    outline: none;
+  }
+  .total-price {
+    margin-top: 10px;
+    font-weight: 700;
+    font-size: 18px;
+    text-align: center;
+    color: #f11712;
+  }
+  .btn-confirm {
+    width: 100%;
+    background: #f11712;
+    color: #fff;
+    font-weight: 600;
+    padding: 14px;
+    border: none;
+    border-radius: 0 0 12px 12px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background 0.3s ease;
+  }
+  .btn-confirm:hover {
+    background: #d00e0e;
+  }
+  .agency-info {
+    background: #f7f7f7;
+    padding: 16px 20px;
+    margin: 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #333;
+  }
+  .agency-info strong {
+    display: inline-block;
+    width: 110px;
+    color: #000;
+  }
+  .payment-success {
+    margin: 20px;
+    padding: 12px;
+    background: #d4edda;
+    color: #155724;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 600;
+    display: none;
+  }
+  .nearby-agencies {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #f11712;
+  }
+</style>
+</head>
+<body>
+
+<div class="booking-container">
+  <div class="booking-header">Bike Booking Details</div>
+  <div class="details">
+    <p><strong>Bike Name:</strong> <span id="bikeName">Loading...</span></p>
+    <p><strong>Price per day:</strong> Rs. <span id="pricePerDay">0</span></p>
+
+    <!-- Location Selection -->
+    <label for="pickupLocation">Select Pickup Location:</label>
+    <select id="pickupLocation">
+      <option value="" disabled selected>Select Location</option>
+      <option value="Chennai">Chennai</option>
+      <option value="Madurai">Madurai</option>
+      <option value="Coimbatore">Coimbatore</option>
+      <option value="Trichy">Trichy</option>
+      <option value="Salem">Salem</option>
+      <option value="Erode">Erode</option>
+      <option value="Tirunelveli">Tirunelveli</option>
+      <option value="Vellore">Vellore</option>
+      <option value="Thanjavur">Thanjavur</option>
+      <option value="Tuticorin">Tuticorin</option>
+    </select>
+
+    <!-- Nearby Agency Dropdown -->
+    <label for="agencySelect" id="agencyLabel" style="display:none;">Select Nearby Agency:</label>
+    <select id="agencySelect" style="display:none;">
+      <option value="" disabled selected>Select Agency</option>
+    </select>
+
+    <label for="numberOfDays">Number of Days:</label>
+    <input type="number" id="numberOfDays" min="1" value="1" />
+
+    <div class="total-price" id="totalPrice">Total: Rs. 0</div>
+  </div>
+
+  <button class="btn-confirm" id="confirmBooking">Confirm Booking</button>
+
+  <div class="agency-info">
+    <p><strong>Rental Agency Details</strong></p>
+    <p><strong>Name:</strong> Tamil Nadu Bike Rentals</p>
+    <p><strong>Contact:</strong> +91 9876543210</p>
+    <p><strong>Email:</strong> info@tnbikerentals.com</p>
+  </div>
+
+  <div class="payment-success" id="paymentSuccess">
+    Payment successful! Your booking is confirmed.
+  </div>
+</div>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const bikeName = params.get("bike");
+  const price = parseInt(params.get("price")) || 0;
+
+  document.getElementById("bikeName").textContent = bikeName || "Not Provided";
+  document.getElementById("pricePerDay").textContent = price;
+
+  const daysInput = document.getElementById("numberOfDays");
+  const totalPrice = document.getElementById("totalPrice");
+  const pickupLocation = document.getElementById("pickupLocation");
+  const confirmBtn = document.getElementById("confirmBooking");
+  const paymentSuccess = document.getElementById("paymentSuccess");
+
+  // ✅ Real Nearby agencies (10 cities)
+  const agencies = {
+    Chennai: [
+      'Royal Brothers - T Nagar',
+      'Vogo Rentals - Velachery',
+      'Bounce - Guindy',
+      'Onn Bikes - Anna Nagar'
+    ],
+    Madurai: [
+      'Madurai Bike Rentals - Simmakkal',
+      'Royal Brothers - Anna Nagar',
+      'TN Bikes - Goripalayam',
+      'RideEasy Rentals - Tallakulam'
+    ],
+    Coimbatore: [
+      'Royal Brothers - Gandhipuram',
+      'GoBikes - Peelamedu',
+      'Zoom Bikes - RS Puram',
+      'WheelStreet Rentals - Avinashi Road'
+    ],
+    Trichy: [
+      'Trichy Bike Hub - Cantonment',
+      'Royal Brothers - Thillai Nagar',
+      'City Rentals - Srirangam',
+      'RideOn Bikes - Woraiyur'
+    ],
+    Salem: [
+      'Salem Bike Rentals - Fairlands',
+      'Royal Riders - Hasthampatty',
+      'GoZoom Bikes - Ammapet',
+      'WheelStreet Rentals - Suramangalam'
+    ],
+    Erode: [
+      'Erode Bike Zone - Perundurai Road',
+      'GoBikes - Surampatti',
+      'Royal Brothers - Thindal',
+      'RideNow Rentals - Veerappanchatram'
+    ],
+    Tirunelveli: [
+      'Nellai Bike Rentals - Palayamkottai',
+      'Royal Brothers - Vannarpettai',
+      'RideX - Junction',
+      'Zoom Bikes - Tirunelveli Town'
+    ],
+    Vellore: [
+      'Vellore Bike Hub - Katpadi',
+      'GoBikes - Gandhinagar',
+      'Royal Brothers - VIT Campus',
+      'RideOn - Officer’s Line'
+    ],
+    Thanjavur: [
+      'Thanjavur Bike Rentals - Medical College Road',
+      'Zoom Bikes - Old Bus Stand',
+      'Royal Brothers - Papanasam Road',
+      'EasyRide Rentals - Main Bazaar'
+    ],
+    Tuticorin: [
+      'Tuticorin Bike Rentals - Bryant Nagar',
+      'Royal Brothers - Harbour Area',
+      'RideX Rentals - Millerpuram',
+      'WheelStreet - Ettayapuram Road'
+    ]
+  };
+
+  function updateTotal() {
+    const days = parseInt(daysInput.value) || 1;
+    totalPrice.textContent = `Total: Rs. ${price * days}`;
+  }
+
+  daysInput.addEventListener("input", updateTotal);
+  updateTotal();
+
+  // Update agency list when location changes
+  pickupLocation.addEventListener('change', () => {
+    const selected = pickupLocation.value;
+    const agencySelect = document.getElementById("agencySelect");
+    const agencyLabel = document.getElementById("agencyLabel");
+
+    if (selected && agencies[selected]) {
+      agencySelect.style.display = "block";
+      agencyLabel.style.display = "block";
+      agencySelect.innerHTML = `<option value="" disabled selected>Select Agency</option>`;
+      agencies[selected].forEach(a => {
+        const option = document.createElement("option");
+        option.value = a;
+        option.textContent = a;
+        agencySelect.appendChild(option);
+      });
+    } else {
+      agencySelect.style.display = "none";
+      agencyLabel.style.display = "none";
+    }
+  });
+
+  // Confirm booking
+  confirmBtn.addEventListener("click", () => {
+    const location = pickupLocation.value;
+    const days = parseInt(daysInput.value);
+    const agency = document.getElementById("agencySelect").value;
+
+    if (!location) {
+      alert("Please select a pickup location.");
+      return;
+    }
+    if (!agency) {
+      alert("Please select a nearby agency.");
+      return;
+    }
+    if (!days || days < 1) {
+      alert("Please enter a valid number of days.");
+      return;
+    }
+
+    confirmBtn.disabled = true;
+    confirmBtn.textContent = "Processing Payment...";
+
+    setTimeout(() => {
+      confirmBtn.textContent = "Confirm Booking";
+      confirmBtn.disabled = false;
+      paymentSuccess.style.display = "block";
+      paymentSuccess.textContent = `✅ Payment successful! Your bike is booked at ${agency}, ${location}.`;
+    }, 2000);
+  });
+</script>
+
+</body>
+</html>

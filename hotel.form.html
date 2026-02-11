@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hotel Booking Form</title>
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(135deg, #007bff, #00b894);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    .booking-container {
+      background: #fff;
+      border-radius: 15px;
+      padding: 30px;
+      width: 400px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      animation: fadeIn 0.8s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 5px;
+      color: #444;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 15px;
+      transition: all 0.3s;
+    }
+
+    input:focus, select:focus {
+      border-color: #007bff;
+      outline: none;
+      box-shadow: 0 0 4px rgba(0, 123, 255, 0.4);
+    }
+
+    .offer-section {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    button {
+      width: 100%;
+      background: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 12px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    .total-box {
+      background: #f8f9fa;
+      border-radius: 10px;
+      padding: 15px;
+      margin-top: 10px;
+      text-align: center;
+      font-size: 16px;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .success {
+      color: green;
+      text-align: center;
+      margin-top: 10px;
+      font-weight: 600;
+      white-space: pre-line;
+    }
+  </style>
+</head>
+<body>
+  <div class="booking-container">
+    <h2>Hotel Booking Form</h2>
+
+    <label>Hotel Name</label>
+    <input type="text" id="hotelName" readonly>
+
+    <label>From Date</label>
+    <input type="date" id="fromDate" required>
+
+    <label>To Date</label>
+    <input type="date" id="toDate" required>
+
+    <label>Number of Days</label>
+    <input type="number" id="numDays" readonly>
+
+    <label>Food Package</label>
+    <select id="food">
+      <option value="0">No Food</option>
+      <option value="500">Breakfast (₹500/day)</option>
+      <option value="1200">Full Board (₹1200/day)</option>
+    </select>
+
+    <label>Accommodation Type</label>
+    <select id="accommodation">
+      <option value="2000">Standard - ₹2000/night</option>
+      <option value="3500">Deluxe - ₹3500/night</option>
+      <option value="5000">Suite - ₹5000/night</option>
+    </select>
+
+    <label>Offer Code</label>
+    <div class="offer-section">
+      <input type="text" id="offerCode" placeholder="Enter Offer Code">
+      <button type="button" onclick="applyOffer()">Apply</button>
+    </div>
+
+    <div class="total-box" id="totalBox">Total: ₹0</div>
+
+    <button type="button" id="confirmBtn">Confirm Booking</button>
+    <div id="paymentSuccess" class="success" style="display:none;"></div>
+  </div>
+
+  <script>
+    let offerDiscount = 0;
+
+    // Get hotel name from URL parameter
+    function getHotelNameFromURL() {
+      const params = new URLSearchParams(window.location.search);
+      const hotel = params.get("hotel");
+      if(hotel) {
+        document.getElementById("hotelName").value = decodeURIComponent(hotel.replace(/\+/g, ' '));
+      } else {
+        document.getElementById("hotelName").value = "Default Hotel";
+      }
+    }
+    getHotelNameFromURL();
+
+    // Calculate number of days
+    function calculateDays() {
+      const from = new Date(document.getElementById("fromDate").value);
+      const to = new Date(document.getElementById("toDate").value);
+      if (from && to && to > from) {
+        const diff = (to - from) / (1000 * 60 * 60 * 24);
+        document.getElementById("numDays").value = diff;
+        return diff;
+      } else {
+        document.getElementById("numDays").value = 0;
+        return 0;
+      }
+    }
+
+    // Calculate total
+    function calculateTotal() {
+      const days = calculateDays();
+      const food = parseInt(document.getElementById("food").value) || 0;
+      const room = parseInt(document.getElementById("accommodation").value) || 0;
+
+      if (days <= 0) return 0;
+
+      let total = days * (room + food);
+      if (offerDiscount > 0) {
+        total = total - total * (offerDiscount / 100);
+      }
+
+      document.getElementById("totalBox").innerText = `Total: ₹${total.toFixed(2)}`;
+      return total;
+    }
+
+    // Recalculate total on input changes
+    document.querySelectorAll("#fromDate, #toDate, #food, #accommodation")
+      .forEach(input => input.addEventListener("input", calculateTotal));
+
+    // Apply offer code
+    function applyOffer() {
+      const code = document.getElementById("offerCode").value.trim().toUpperCase();
+      if (code === "TN25") offerDiscount = 25;
+      else if (code === "SUMMER20") offerDiscount = 20;
+      else offerDiscount = 0;
+
+      if (offerDiscount > 0) alert(`✅ ${offerDiscount}% OFF Applied Successfully!`);
+      else alert("❌ Invalid Offer Code");
+
+      calculateTotal();
+    }
+
+    // Confirm booking (payment simulation)
+    const confirmBtn = document.getElementById("confirmBtn");
+    const paymentSuccess = document.getElementById("paymentSuccess");
+
+    confirmBtn.addEventListener("click", () => {
+      const hotel = document.getElementById("hotelName").value;
+      const total = calculateTotal();
+
+      if (calculateDays() <= 0) {
+        alert("Please select valid From and To dates.");
+        return;
+      }
+
+      confirmBtn.disabled = true;
+      confirmBtn.textContent = "Processing Payment...";
+
+      setTimeout(() => {
+        confirmBtn.textContent = "Confirm Booking";
+        confirmBtn.disabled = false;
+        paymentSuccess.style.display = "block";
+        paymentSuccess.textContent = `✅ Payment successful! Your stay at ${hotel} is booked.\nTotal: ₹${total.toFixed(2)}`;
+      }, 2000);
+    });
+  </script>
+</body>
+</html>

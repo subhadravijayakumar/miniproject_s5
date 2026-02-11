@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tamil Nadu Hotels</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f8f9fa;
+    }
+
+    header {
+      background: #004080;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .hotels-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      padding: 30px;
+      max-width: 1400px;
+      margin: auto;
+    }
+
+    .hotel-card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: transform 0.2s;
+    }
+
+    .hotel-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .hotel-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .hotel-content {
+      padding: 15px;
+    }
+
+    .hotel-content h3 {
+      margin: 0;
+      font-size: 18px;
+      color: #333;
+    }
+
+    .hotel-content p {
+      font-size: 14px;
+      color: #666;
+      margin: 8px 0;
+    }
+
+    .hotel-content span {
+      font-weight: bold;
+      color: #004080;
+    }
+
+    .hotel-content a {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 16px;
+      background: #004080;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 14px;
+      transition: background 0.3s;
+    }
+
+    .hotel-content a:hover {
+      background: #0066cc;
+    }
+
+    footer {
+      background: #004080;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  🌴 Hotels in Tamil Nadu
+</header>
+
+<div class="hotels-container">
+
+<!-- Hotel 1 -->
+<div class="hotel-card">
+  <img src="Marina Bay View Hotel.jpeg" alt="Marina Bay View Hotel">
+  <div class="hotel-content">
+    <h3>Marina Bay View Hotel</h3>
+    <p>Chennai, Tamil Nadu</p>
+    <p>Enjoy 25% OFF on seafront luxury stays near Marina Beach.</p>
+    <span>Discount: 25% OFF</span><br>
+    <a href="form.html?hotel=Marina%20Bay%20View%20Hotel">Book Now</a>
+  </div>
+</div>
+
+<!-- Hotel 2 -->
+<div class="hotel-card">
+  <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb" alt="Ooty Mountain Retreat">
+  <div class="hotel-content">
+    <h3>Ooty Mountain Retreat</h3>
+    <p>Ooty, Tamil Nadu</p>
+    <p>Up to 40% OFF on misty hilltop cottages.</p>
+    <span>Discount: 40% OFF</span><br>
+    <a href="form.html?hotel=Ooty%20Mountain%20Retreat">Book Now</a>
+  </div>
+</div>
+
+<!-- Hotel 3 -->
+<div class="hotel-card">
+  <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b" alt="Madurai Heritage Inn">
+  <div class="hotel-content">
+    <h3>Madurai Heritage Inn</h3>
+    <p>Madurai, Tamil Nadu</p>
+    <p>Save up to ₹4000 on heritage-style rooms near Meenakshi Temple.</p>
+    <span>Discount: ₹4000 OFF</span><br>
+    <a href="form.html?hotel=Madurai%20Heritage%20Inn">Book Now</a>
+  </div>
+</div>
+
+<!-- Hotel 4 -->
+<div class="hotel-card">
+  <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267" alt="Kodaikanal Lake View Resort">
+  <div class="hotel-content">
+    <h3>Kodaikanal Lake View Resort</h3>
+    <p>Kodaikanal, Tamil Nadu</p>
+    <p>Flat 35% OFF on lakeside villas with private balconies.</p>
+    <span>Discount: 35% OFF</span><br>
+    <a href="form.html?hotel=Kodaikanal%20Lake%20View%20Resort">Book Now</a>
+  </div>
+</div>
+
+<!-- Hotel 5 -->
+<div class="hotel-card">
+  <img src="https://images.unsplash.com/photo-1526779259212-939e64788e3c" alt="Rameswaram Island Retreat">
+  <div class="hotel-content">
+    <h3>Rameswaram Island Retreat</h3>
+    <p>Rameswaram, Tamil Nadu</p>
+    <p>20% OFF on island beach cottages and villas.</p>
+    <span>Discount: 20% OFF</span><br>
+    <a href="form.html?hotel=Rameswaram%20Island%20Retreat">Book Now</a>
+  </div>
+</div>
+
+<!-- Hotel 6 -->
+<div class="hotel-card">
+  <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b" alt="Coimbatore Business Suites">
+  <div class="hotel-content">
+    <h3>Coimbatore Business Suites</h3>
+    <p>Coimbatore, Tamil Nadu</p>
+    <p>Stay in style — save ₹3000 on deluxe suites.</p>
+    <span>Discount: ₹3000 OFF</span><br>
+    <a href="form.html?hotel=Coimbatore%20Business%20Suites">Book Now</a>
+  </div>
+</div>
+
+<!-- Hotel 7 -->
+<div class="hotel-card">
+  <img src="Mahabalipuram Sea Breeze Resort.jpeg" alt="Mahabalipuram Sea Breeze Resort">
+  <div class="hotel-content">
+    <h3>Mahabalipuram Sea Breeze Resort</h3>
+    <p>Mahabalipuram, Tamil Nadu</p>
+    <p>Up to 30% OFF on premium beachside resorts.</p>
+    <span>Discount: 30% OFF</span><br>
+    <a href="form.html?hotel=Mahabalipuram%20Sea%20Breeze%20Resort">Book Now</a>
+  </div>
+</div>
+
+<!-- Hotel 8 -->
+<div class="hotel-card">
+  <img src="https://images.unsplash.com/photo-1521790361543-f645cf042ec4" alt="Yercaud Hill Palace">
+  <div class="hotel-content">
+    <h3>Yercaud Hill Palace</h3>
+    <p>Yercaud, Tamil Nadu</p>
+    <p>Book 3 nights, get 1 free — exclusive hill retreat offer.</p>
+    <span>Discount: 25% OFF</span><br>
+    <a href="form.html?hotel=Yercaud%20Hill%20Palace">Book Now</a>
+  </div>
+</div>
+
+<!-- Hotel 9 -->
+<div class="hotel-card">
+  <img src="Trichy Riverfront Hotel.jpeg" alt="Trichy Riverfront Hotel">
+  <div class="hotel-content">
+    <h3>Trichy Riverfront Hotel</h3>
+    <p>Tiruchirappalli, Tamil Nadu</p>
+    <p>15% OFF for temple town travelers near Kaveri river.</p>
+    <span>Discount: 15% OFF</span><br>
+    <a href="form.html?hotel=Trichy%20Riverfront%20Hotel">Book Now</a>
+  </div>
+</div>
+
+<!-- Hotel 10 -->
+<div class="hotel-card">
+  <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" alt="Erode Grand Residency">
+  <div class="hotel-content">
+    <h3>Erode Grand Residency</h3>
+    <p>Erode, Tamil Nadu</p>
+    <p>Special business class packages with 20% OFF.</p>
+    <span>Discount: 20% OFF</span><br>
+    <a href="form.html?hotel=Erode%20Grand%20Residency">Book Now</a>
+  </div>
+</div>
+
+<!-- Hotel 11 -->
+<div class="hotel-card">
+  <img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461" alt="Thanjavur Heritage Palace">
+  <div class="hotel-content">
+    <h3>Thanjavur Heritage Palace</h3>
+    <p>Thanjavur, Tamil Nadu</p>
+    <p>Stay royal — 25% OFF on palace-style heritage hotels.</p>
+    <span>Discount: 25% OFF</span><br>
+    <a href="form.html?hotel=Thanjavur%20Heritage%20Palace">Book Now</a>
+  </div>
+</div>
+
+<!-- Hotel 12 -->
+<div class="hotel-card">
+  <img src="Salem Comfort Suites.jpeg" alt="Salem Comfort Suites">
+  <div class="hotel-content">
+    <h3>Salem Comfort Suites</h3>
+    <p>Salem, Tamil Nadu</p>
+    <p>Enjoy 20% OFF with complimentary breakfast.</p>
+    <span>Discount: 20% OFF</span><br>
+    <a href="form.html?hotel=Salem%20Comfort%20Suites">Book Now</a>
+  </div>
+</div>
+
+<!-- Hotel 13 -->
+<div class="hotel-card">
+  <img src="https://images.unsplash.com/photo-1534723452862-4c874018d66d" alt="Dindigul Hillside Inn">
+  <div class="hotel-content">
+    <h3>Dindigul Hillside Inn</h3>
+    <p>Dindigul, Tamil Nadu</p>
+    <p>25% OFF for scenic mountain view rooms.</p>
+    <span>Discount: 25% OFF</span><br>
+    <a href="form.html?hotel=Dindigul%20Hillside%20Inn">Book Now</a>
+  </div>
+</div>
+
+<!-- Hotel 14 -->
+<div class="hotel-card">
+  <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb" alt="Tuticorin Bay View Resort">
+  <div class="hotel-content">
+    <h3>Tuticorin Bay View Resort</h3>
+    <p>Thoothukudi, Tamil Nadu</p>
+    <p>Flat 30% OFF on seaside rooms and suites.</p>
+    <span>Discount: 30% OFF</span><br>
+    <a href="form.html?hotel=Tuticorin%20Bay%20View%20Resort">Book Now</a>
+  </div>
+</div>
+
+<!-- Hotel 15 -->
+<div class="hotel-card">
+  <img src="https://images.unsplash.com/photo-1560347876-aeef00ee58a1" alt="Vellore Fort Residency">
+  <div class="hotel-content">
+    <h3>Vellore Fort Residency</h3>
+    <p>Vellore, Tamil Nadu</p>
+    <p>Save 15% on luxury rooms near Vellore Fort.</p>
+    <span>Discount: 15% OFF</span><br>
+        <a href="form.html?hotel=Vellore%20Fort%20Residency">Book Now</a>
+  </div>
+</div>
+
+<!-- Hotel 16 -->
+<div class="hotel-card">
+  <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267" alt="Cuddalore Beachside Resort">
+  <div class="hotel-content">
+    <h3>Cuddalore Beachside Resort</h3>
+    <p>Cuddalore, Tamil Nadu</p>
+    <p>Stay 2 nights, get 1 free — beach view cottages.</p>
+    <span>Discount: 33% OFF</span><br>
+    <a href="form.html?hotel=Cuddalore%20Beachside%20Resort">Book Now</a>
+  </div>
+</div>
+
+<!-- Hotel 17 -->
+<div class="hotel-card">
+  <img src="https://images.unsplash.com/photo-1521401830884-6c03c1c87ebb" alt="Pondicherry Bay Retreat">
+  <div class="hotel-content">
+    <h3>Pondicherry Bay Retreat</h3>
+    <p>Puducherry (TN border)</p>
+    <p>20% OFF on French-style boutique stays.</p>
+    <span>Discount: 20% OFF</span><br>
+    <a href="form.html?hotel=Pondicherry%20Bay%20Retreat">Book Now</a>
+  </div>
+</div>
+
+<!-- Hotel 18 -->
+<div class="hotel-card">
+  <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945" alt="Namakkal Garden Hotel">
+  <div class="hotel-content">
+    <h3>Namakkal Garden Hotel</h3>
+    <p>Namakkal, Tamil Nadu</p>
+    <p>Save 25% on premium garden suites.</p>
+    <span>Discount: 25% OFF</span><br>
+    <a href="form.html?hotel=Namakkal%20Garden%20Hotel">Book Now</a>
+  </div>
+</div>
+
+<!-- Hotel 19 -->
+<div class="hotel-card">
+  <img src="Karur Riverside Resort.jpeg" alt="Karur Riverside Resort">
+  <div class="hotel-content">
+    <h3>Karur Riverside Resort</h3>
+    <p>Karur, Tamil Nadu</p>
+    <p>Enjoy peaceful river views and 25% discount.</p>
+    <span>Discount: 25% OFF</span><br>
+    <a href="form.html?hotel=Karur%20Riverside%20Resort">Book Now</a>
+  </div>
+</div>
+
+<!-- Hotel 20 -->
+<div class="hotel-card">
+  <img src="Nagercoil Ocean Stay.jpeg" alt="Nagercoil Ocean Stay">
+  <div class="hotel-content">
+    <h3>Nagercoil Ocean Stay</h3>
+    <p>Nagercoil, Tamil Nadu</p>
+    <p>Up to 30% OFF on sea-view luxury rooms.</p>
+    <span>Discount: 30% OFF</span><br>
+    <a href="form.html?hotel=Nagercoil%20Ocean%20Stay">Book Now</a>
+  </div>
+</div>
+
+<!-- Hotel 21 -->
+<div class="hotel-card">
+  <img src="https://images.unsplash.com/photo-1521790361543-f645cf042ec4" alt="Tirunelveli Comfort Inn">
+  <div class="hotel-content">
+    <h3>Tirunelveli Comfort Inn</h3>
+    <p>Tirunelveli, Tamil Nadu</p>
+    <p>Relax and save 20% on your family vacations.</p>
+    <span>Discount: 20% OFF</span><br>
+    <a href="form.html?hotel=Tirunelveli%20Comfort%20Inn">Book Now</a>
+  </div>
+</div>
+
+<!-- Hotel 22 -->
+<div class="hotel-card">
+  <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945" alt="Pollachi Eco Stay">
+  <div class="hotel-content">
+    <h3>Pollachi Eco Stay</h3>
+    <p>Pollachi, Tamil Nadu</p>
+    <p>Eco-friendly resort offering 25% OFF for nature lovers.</p>
+    <span>Discount: 25% OFF</span><br>
+    <a href="form.html?hotel=Pollachi%20Eco%20Stay">Book Now</a>
+  </div>
+</div>
+
+<!-- Hotel 23 -->
+<div class="hotel-card">
+  <img src="Tirupur Textile City Hotel.jpeg" alt="Tirupur Textile City Hotel">
+  <div class="hotel-content">
+    <h3>Tirupur Textile City Hotel</h3>
+    <p>Tirupur, Tamil Nadu</p>
+    <p>Business travelers get 20% OFF with free WiFi.</p>
+    <span>Discount: 20% OFF</span><br>
+    <a href="form.html?hotel=Tirupur%20Textile%20City%20Hotel">Book Now</a>
+  </div>
+</div>
+
+<!-- Hotel 24 -->
+<div class="hotel-card">
+  <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b" alt="Ariyalur Comfort Lodge">
+  <div class="hotel-content">
+    <h3>Ariyalur Comfort Lodge</h3>
+    <p>Ariyalur, Tamil Nadu</p>
+    <p>Stay longer, save more — 25% OFF on all bookings.</p>
+    <span>Discount: 25% OFF</span><br>
+    <a href="form.html?hotel=Ariyalur%20Comfort%20Lodge">Book Now</a>
+  </div>
+</div>
+
+<!-- Hotel 25 -->
+<div class="hotel-card">
+  <img src="Perambalur Valley Inn.jpeg" alt="Perambalur Valley Inn">
+  <div class="hotel-content">
+    <h3>Perambalur Valley Inn</h3>
+    <p>Perambalur, Tamil Nadu</p>
+    <p>Flat 20% OFF on comfortable modern rooms.</p>
+    <span>Discount: 20% OFF</span><br>
+    <a href="form.html?hotel=Perambalur%20Valley%20Inn">Book Now</a>
+  </div>
+</div>
+
+<!-- Hotel 26 -->
+<div class="hotel-card">
+  <img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461" alt="Krishnagiri Hillside Resort">
+  <div class="hotel-content">
+    <h3>Krishnagiri Hillside Resort</h3>
+    <p>Krishnagiri, Tamil Nadu</p>
+    <p>Up to 30% OFF for weekend hill retreats.</p>
+    <span>Discount: 30% OFF</span><br>
+    <a href="form.html?hotel=Krishnagiri%20Hillside%20Resort">Book Now</a>
+  </div>
+</div>
+
+<!-- Hotel 27 -->
+<div class="hotel-card">
+  <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b" alt="Chidambaram Heritage Inn">
+  <div class="hotel-content">
+    <h3>Chidambaram Heritage Inn</h3>
+    <p>Chidambaram, Tamil Nadu</p>
+    <p>Save 20% near Nataraja Temple — cultural stays.</p>
+    <span>Discount: 20% OFF</span><br>
+    <a href="form.html?hotel=Chidambaram%20Heritage%20Inn">Book Now</a>
+  </div>
+</div>
+
+<!-- Hotel 28 -->
+<div class="hotel-card">
+  <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267" alt="Theni Valley Resort">
+  <div class="hotel-content">
+    <h3>Theni Valley Resort</h3>
+    <p>Theni, Tamil Nadu</p>
+    <p>Flat 25% OFF on scenic valley stays.</p>
+    <span>Discount: 25% OFF</span><br>
+    <a href="form.html?hotel=Theni%20Valley%20Resort">Book Now</a>
+  </div>
+</div>
+
+<!-- Hotel 29 -->
+<div class="hotel-card">
+  <img src="Nagapattinam Coastline Resort.jpeg" alt="Nagapattinam Coastline Resort">
+  <div class="hotel-content">
+    <h3>Nagapattinam Coastline Resort</h3>
+    <p>Nagapattinam, Tamil Nadu</p>
+    <p>Enjoy 30% OFF with seafood dining experiences.</p>
+    <span>Discount: 30% OFF</span><br>
+    <a href="form.html?hotel=Nagapattinam%20Coastline%20Resort">Book Now</a>
+  </div>
+</div>
+
+<!-- Hotel 30 -->
+<div class="hotel-card">
+  <img src="Dharmapuri Hills Resort.jpeg" alt="Dharmapuri Hills Resort">
+  <div class="hotel-content">
+    <h3>Dharmapuri Hills Resort</h3>
+    <p>Dharmapuri, Tamil Nadu</p>
+    <p>20% OFF on hillside rooms for couples.</p>
+    <span>Discount: 20% OFF</span><br>
+    <a href="form.html?hotel=Dharmapuri%20Hills%20Resort">Book Now</a>
+  </div>
+</div>
+
+<!--Hotel 31-->
+<div class="hotel-card">
+    <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb" alt="Ooty Mountain Retreat">
+    <div class="hotel-content">
+      <h3>Ooty Mountain Retreat</h3>
+      <p>Ooty, Tamil Nadu</p>
+      <p>Up to 40% OFF on misty hilltop cottages.</p>
+      <span>Discount: 40% OFF</span><br>
+    <a href="form.html?hotel=Ooty%20Mountain%20Retreat">Book Now</a>
+    </div>
+  </div>
+
+  <!--Hotel 32-->
+  <div class="hotel-card">
+    <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b" alt="Madurai Heritage Inn">
+    <div class="hotel-content">
+      <h3>Madurai Heritage Inn</h3>
+      <p>Madurai, Tamil Nadu</p>
+      <p>Save up to 30% on heritage-style rooms near Meenakshi Temple.</p>
+      <span>Discount: 30% FF</span><br>
+    <a href="form.html?hotel=Madurai%20Heritage%20Inn">Book Now</a>
+    </div>
+  </div>
+
+
+
+</div>
+
+<footer>
+  © 2025 Tamil Nadu Hotel Booking. All Rights Reserved.
+</footer>
+
+</body>
+</html>
