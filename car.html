@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Car Rentals in Tamil Nadu</title>
+  <style>
+    /* Global Styles */
+    body {
+      font-family: "Poppins", sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #fff9f0, #e0f7fa);
+      color: #333;
+    }
+
+    /* Header */
+    header {
+      background: linear-gradient(90deg, #4facfe, #00f2fe);
+      color: white;
+      text-align: center;
+      padding: 25px;
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    /* Car Container */
+    .car-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      padding: 50px 40px;
+    }
+
+    /* Car Card */
+    .car-card {
+      background: #ffffff;
+      border-radius: 20px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+      overflow: hidden;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .car-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+    }
+
+    .car-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-bottom: 4px solid #ffb300; /* gold accent */
+    }
+
+    .car-info {
+      padding: 20px;
+    }
+
+    .car-info h3 {
+      color: #1a1a2e;
+      margin: 10px 0 5px;
+      font-weight: 600;
+      font-size: 1.2rem;
+    }
+
+    .car-info p {
+      color: #555;
+      font-size: 0.95rem;
+      margin-bottom: 8px;
+    }
+
+    .price {
+      color: #ffb300;
+      font-weight: bold;
+      font-size: 1.15rem;
+      margin-bottom: 10px;
+    }
+
+    /* Buttons */
+    button {
+      background: linear-gradient(90deg, #4facfe, #00f2fe);
+      color: white;
+      border: none;
+      padding: 12px 0;
+      width: 85%;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background: linear-gradient(90deg, #00f2fe, #4facfe);
+      transform: scale(1.05);
+    }
+
+    /* Footer */
+    footer {
+      background: linear-gradient(90deg, #4facfe, #00f2fe);
+      color: white;
+      text-align: center;
+      padding: 18px;
+      font-size: 0.95rem;
+      letter-spacing: 0.5px;
+      box-shadow: 0 -4px 10px rgba(0,0,0,0.05);
+    }
+
+    @media (max-width: 768px) {
+      header { font-size: 1.6rem; padding: 20px; }
+      .car-info h3 { font-size: 1.05rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>🚗 Car Rentals in Tamil Nadu</header>
+
+<div class="car-container">
+
+<!-- Car 1 -->
+<div class="car-card">
+  <img src="Maruti Suzuki Swift.jpeg" alt="Maruti Suzuki Swift">
+  <div class="car-info">
+    <h3>Maruti Suzuki Swift</h3>
+    <p>1 Day (150 km limit)</p>
+    <div class="price">Rs. 1500</div>
+    <p><strong>Fuel:</strong> Petrol</p>
+    <p><strong>Seats:</strong> 5</p>
+    <p><strong>Transmission:</strong> Automatic</p>
+    <p><strong>Features:</strong> AC, GPS, Music System</p>
+    <button class="book-btn">Book</button>
+  </div>
+</div>
+
+<!-- Car 2 -->
+<div class="car-card">
+  <img src="Hyundai i20.jpeg" alt="Hyundai i20">
+  <div class="car-info">
+    <h3>Hyundai i20</h3>
+    <p>1 Day (150 km limit)</p>
+    <div class="price">Rs. 1800</div>
+    <p><strong>Fuel:</strong> Petrol</p>
+    <p><strong>Seats:</strong> 5</p>
+    <p><strong>Transmission:</strong> Automatic</p>
+    <p><strong>Features:</strong> AC, GPS, Music System</p>
+    <button class="book-btn">Book</button>
+  </div>
+</div>
+
+<!-- Car 3 -->
+<div class="car-card">
+  <img src="Tata Altroz.jpeg" alt="Tata Altroz">
+  <div class="car-info">
+    <h3>Tata Altroz</h3>
+    <p>1 Day (150 km limit)</p>
+    <div class="price">Rs. 1700</div>
+    <p><strong>Fuel:</strong> Petrol</p>
+    <p><strong>Seats:</strong> 5</p>
+    <p><strong>Transmission:</strong> Automatic</p>
+    <p><strong>Features:</strong> AC, GPS, Music System</p>
+    <button class="book-btn">Book</button>
+  </div>
+</div>
+
+<!-- Car 4 -->
+<div class="car-card">
+  <img src="Maruti Baleno.jpeg" alt="Maruti Baleno">
+  <div class="car-info">
+    <h3>Maruti Baleno</h3>
+    <p>1 Day (150 km limit)</p>
+    <div class="price">Rs. 1900</div>
+    <p><strong>Fuel:</strong> Petrol</p>
+    <p><strong>Seats:</strong> 5</p>
+    <p><strong>Transmission:</strong> Automatic</p>
+    <p><strong>Features:</strong> AC, GPS, Music System</p>
+    <button class="book-btn">Book</button>
+  </div>
+</div>
+
+<!-- Car 5 -->
+<div class="car-card">
+  <img src="Hyundai i20.jpeg" alt="Honda City">
+  <div class="car-info">
+    <h3>Honda City</h3>
+    <p>1 Day (200 km limit)</p>
+    <div class="price">Rs. 2500</div>
+    <p><strong>Fuel:</strong> Petrol</p>
+    <p><strong>Seats:</strong> 5</p>
+    <p><strong>Transmission:</strong> Automatic</p>
+    <p><strong>Features:</strong> AC, GPS, Music System</p>
+    <button class="book-btn">Book</button>
+  </div>
+</div>
+
+<!-- Car 6 -->
+<div class="car-card">
+  <img src="Toyota Innova.jpeg" alt="Toyota Innova">
+  <div class="car-info">
+    <h3>Toyota Innova Crysta</h3>
+    <p>1 Day (200 km limit)</p>
+    <div class="price">Rs. 3200</div>
+    <p><strong>Fuel:</strong> Diesel</p>
+    <p><strong>Seats:</strong> 7</p>
+    <p><strong>Transmission:</strong> Automatic</p>
+    <p><strong>Features:</strong> AC, GPS, Music System</p>
+    <button class="book-btn">Book</button>
+  </div>
+</div>
+
+<!-- Car 7 -->
+<div class="car-card">
+  <img src="Fortuner.jpeg" alt="Toyota Fortuner">
+  <div class="car-info">
+    <h3>Toyota Fortuner</h3>
+    <p>1 Day (200 km limit)</p>
+    <div class="price">Rs. 4800</div>
+    <p><strong>Fuel:</strong> Diesel</p>
+    <p><strong>Seats:</strong> 7</p>
+    <p><strong>Transmission:</strong> Automatic</p>
+    <p><strong>Features:</strong> AC, GPS, Music System</p>
+    <button class="book-btn">Book</button>
+  </div>
+</div>
+
+<!-- Car 8 -->
+<div class="car-card">
+  <img src="Kia Seltos.jpeg" alt="Kia Seltos">
+  <div class="car-info">
+    <h3>Kia Seltos</h3>
+    <p>1 Day (200 km limit)</p>
+    <div class="price">Rs. 3000</div>
+    <p><strong>Fuel:</strong> Petrol</p>
+    <p><strong>Seats:</strong> 5</p>
+    <p><strong>Transmission:</strong> Automatic</p>
+    <p><strong>Features:</strong> AC, GPS, Music System</p>
+    <button class="book-btn">Book</button>
+  </div>
+</div>
+
+<!-- Car 9 -->
+<div class="car-card">
+  <img src="Hyundai Creta.jpeg" alt="Hyundai Creta">
+  <div class="car-info">
+    <h3>Hyundai Creta</h3>
+    <p>1 Day (200 km limit)</p>
+    <div class="price">Rs. 2800</div>
+    <p><strong>Fuel:</strong> Petrol</p>
+    <p><strong>Seats:</strong> 5</p>
+    <p><strong>Transmission:</strong> Automatic</p>
+    <p><strong>Features:</strong> AC, GPS, Music System</p>
+    <button class="book-btn">Book</button>
+  </div>
+</div>
+
+<!-- Car 10 -->
+<div class="car-card">
+  <img src="Mahindra XUV700.jpeg" alt="Mahindra XUV700">
+  <div class="car-info">
+    <h3>Mahindra XUV700</h3>
+    <p>1 Day (200 km limit)</p>
+    <div class="price">Rs. 3700</div>
+    <p><strong>Fuel:</strong> Petrol</p>
+    <p><strong>Seats:</strong> 5</p>
+    <p><strong>Transmission:</strong> Automatic</p>
+    <p><strong>Features:</strong> AC, GPS, Music System</p>
+    <button class="book-btn">Book</button>
+  </div>
+</div>
+
+<!-- Car 11 -->
+<div class="car-card">
+  <img src="Ford Endeavour.jpeg" alt="Ford Endeavour">
+  <div class="car-info">
+    <h3>Ford Endeavour</h3>
+    <p>1 Day (250 km limit)</p>
+    <div class="price">Rs. 5000</div>
+    <p><strong>Fuel:</strong> Diesel</p>
+    <p><strong>Seats:</strong> 7</p>
+    <p><strong>Transmission:</strong> Automatic</p>
+    <p><strong>Features:</strong> AC, GPS, Music System</p>
+    <button class="book-btn">Book</button>
+  </div>
+</div>
+
+<!-- Car 12 -->
+<div class="car-card">
+  <img src="Mahindra Thar.jpeg" alt="Mahindra Thar">
+  <div class="car-info">
+    <h3>Mahindra Thar</h3>
+    <p>1 Day (150 km limit)</p>
+    <div class="price">Rs. 3000</div>
+    <p><strong>Fuel:</strong> Petrol</p>
+    <p><strong>Seats:</strong> 5</p>
+    <p><strong>Transmission:</strong> Manual</p>
+    <p><strong>Features:</strong> AC, GPS, Music System</p>
+    <button class="book-btn">Book</button>
+  </div>
+</div>
+
+<!-- Car 13 -->
+<div class="car-card">
+  <img src="Toyota Fortuner.jpeg" alt="Toyota Fortuner">
+  <div class="car-info">
+    <h3>Toyota Fortuner</h3>
+    <p>1 Day (200 km limit)</p>
+    <div class="price">Rs. 5000</div>
+    <p><strong>Fuel:</strong> Diesel</p>
+    <p><strong>Seats:</strong> 7</p>
+    <p><strong>Transmission:</strong> Automatic</p>
+    <p><strong>Features:</strong> AC, GPS, Music System</p>
+    <button class="book-btn">Book</button>
+  </div>
+</div>
+
+<!-- Car 14 -->
+<div class="car-card">
+  <img src="Jeep Compass.jpeg" alt="Jeep Compass">
+  <div class="car-info">
+    <h3>Jeep Compass</h3>
+    <p>1 Day (180 km limit)</p>
+    <div class="price">Rs. 3800</div>
+    <p><strong>Fuel:</strong> Petrol</p>
+    <p><strong>Seats:</strong> 5</p>
+    <p><strong>Transmission:</strong> Automatic</p>
+    <p><strong>Features:</strong> AC, GPS, Music System</p>
+    <button class="book-btn">Book</button>
+  </div>
+</div>
+
+<!--car 15-->
+<div class="car-card">
+  <img src="Tata Harrier.jpeg" alt="Tata Harrier">
+  <div class="car-info">
+    <h3>Tata Harrier</h3>
+    <p>1 Day (180 km limit)</p>
+    <div class="price">Rs. 3500</div>
+    <p><strong>Fuel:</strong> Petrol</p>
+    <p><strong>Seats:</strong> 5</p>
+    <p><strong>Transmission:</strong> Automatic</p>
+    <p><strong>Features:</strong> AC, GPS, Music System</p>
+
+    <button class="book-btn">Book</button>
+  </div>
+</div>
+
+</div>
+
+<footer>© 2025 Car Rentals Tamil Nadu | Drive Your Dream</footer>
+
+<script>
+  document.querySelectorAll(".book-btn").forEach(button => {
+    button.addEventListener("click", (e) => {
+      const card = e.target.closest(".car-card");
+      const carName = card.querySelector("h3").textContent.trim();
+      const priceText = card.querySelector(".price").textContent.trim();
+      const price = priceText.replace(/[^0-9]/g, "");
+      window.location.href = `form.html?car=${encodeURIComponent(carName)}&price=${price}`;
+    });
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Car Booking Form</title>
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(135deg, #e0f7fa, #f0f4ff);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .form-container {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      width: 420px;
+    }
+    h2 {
+      text-align: center;
+      color: #004aad;
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: 500;
+    }
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 0.95rem;
+    }
+    input[readonly] {
+      background: #f5f5f5;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #004aad;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      margin-top: 20px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 500;
+      transition: background 0.3s ease;
+    }
+    button:hover:not(:disabled) {
+      background: #003580;
+    }
+    button:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+    .total {
+      color: #d32f2f;
+      font-weight: bold;
+      text-align: right;
+      margin-top: 10px;
+    }
+    .payment-success {
+      display: none;
+      margin-top: 20px;
+      padding: 15px;
+      border-radius: 8px;
+      background: #e8f5e9;
+      color: #2e7d32;
+      font-weight: bold;
+      text-align: center;
+      border: 1px solid #81c784;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+    .note {
+      font-size: 0.85rem;
+      color: #666;
+      margin-top: 5px;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>Car Booking Form</h2>
+    <form id="bookingForm">
+      <label>Car Name:</label>
+      <input type="text" id="carName" readonly />
+
+      <label>Price per Day (Rs):</label>
+      <input type="number" id="price" readonly />
+
+      <label>Pickup Location:</label>
+      <select id="location" required>
+        <option value="">Select City</option>
+        <option value="Chennai">Chennai</option>
+        <option value="Coimbatore">Coimbatore</option>
+        <option value="Madurai">Madurai</option>
+        <option value="Trichy">Trichy</option>
+        <option value="Salem">Salem</option>
+        <option value="Erode">Erode</option>
+        <option value="Tirunelveli">Tirunelveli</option>
+        <option value="Vellore">Vellore</option>
+        <option value="Thanjavur">Thanjavur</option>
+        <option value="Tuticorin">Tuticorin</option>
+      </select>
+
+      <label>Select Rental Agency:</label>
+      <select id="agency" required>
+        <option value="">Select Agency</option>
+      </select>
+
+      <label>Nearby Pickup Point:</label>
+      <select id="nearby" required>
+        <option value="">Select Nearby Pickup Point</option>
+      </select>
+
+      <label>Start Date:</label>
+      <input type="date" id="startDate" required />
+
+      <label>End Date:</label>
+      <input type="date" id="endDate" required />
+
+      <label>Number of Days:</label>
+      <input type="number" id="days" min="1" value="1" required />
+
+      <label>Your Name:</label>
+      <input type="text" id="name" required />
+
+      <label>Contact Number:</label>
+      <input type="tel" id="phone" required pattern="[0-9]{10}" maxlength="10" />
+
+      <label>Upload Aadhaar Card:</label>
+      <input type="file" id="aadhaar" accept=".jpg,.jpeg,.png,.pdf" required />
+      <div class="note">Accepted formats: JPG, PNG, or PDF (Max size: 2MB)</div>
+
+      <div class="total" id="totalDisplay">Total: Rs. 0</div>
+
+      <button type="button" id="confirmBtn">Confirm Booking</button>
+    </form>
+
+    <div class="payment-success" id="paymentSuccess"></div>
+  </div>
+
+  <script>
+    // URL Params
+    const params = new URLSearchParams(window.location.search);
+    const carNameInput = document.getElementById("carName");
+    const priceInput = document.getElementById("price");
+    carNameInput.value = params.get("car") || "";
+    priceInput.value = params.get("price") || "";
+    const price = Number(params.get("price")) || 0;
+
+    const locationSelect = document.getElementById("location");
+    const agencySelect = document.getElementById("agency");
+    const nearbySelect = document.getElementById("nearby");
+    const daysInput = document.getElementById("days");
+    const totalDisplay = document.getElementById("totalDisplay");
+    const confirmBtn = document.getElementById("confirmBtn");
+    const paymentSuccess = document.getElementById("paymentSuccess");
+    const startDateInput = document.getElementById("startDate");
+    const endDateInput = document.getElementById("endDate");
+    const aadhaarInput = document.getElementById("aadhaar");
+
+    // Rental Agencies for each city
+    const rentalAgencies = {
+      "Chennai": ["Royal Brothers - T Nagar","Vogo Rentals - Velachery","Bounce - Guindy","Onn Bikes - Anna Nagar","ZoomCar - Adyar"],
+      "Coimbatore": ["ZoomCar - Gandhipuram","Royal Rentals - Peelamedu","Drivezy - RS Puram","Onn Bikes - Ukkadam","Bounce - Saibaba Colony"],
+      "Madurai": ["GoRent - Mattuthavani","Royal Brothers - KK Nagar","ZoomCar - K Pudur","Drivezy - Simmakkal","Onn Bikes - Tirupparankundram"],
+      "Trichy": ["ZoomCar - Thillai Nagar","Royal Brothers - Cantonment","GoRent - Srirangam","Onn Bikes - Woraiyur","Bounce - Ariyamangalam"],
+      "Salem": ["Royal Rentals - Fairlands","ZoomCar - Hasthampatti","DriveOn - Ammapet","Bounce - Suramangalam","Onn Bikes - Gugai"],
+      "Erode": ["Drivezy - Surampatti","GoRent - Perundurai","Royal Brothers - Thindal","ZoomCar - Veerappanchatram","Bounce - Bhavani"],
+      "Tirunelveli": ["ZoomCar - Palayamkottai","Royal Rentals - Vannarpettai","Bounce - Pettai","Onn Bikes - Melapalayam","Drivezy - Junction"],
+      "Vellore": ["Royal Brothers - Katpadi","ZoomCar - Gandhi Nagar","GoRent - Bagayam","Onn Bikes - Sathuvachari","Bounce - Thorapadi"],
+      "Thanjavur": ["Drivezy - Papanasam Road","ZoomCar - Medical College","Royal Rentals - Kumbakonam","Onn Bikes - Vallam","GoRent - Keelavasal"],
+      "Tuticorin": ["Royal Brothers - Millerpuram","ZoomCar - Bryant Nagar","GoRent - Harbour","Drivezy - SIPCOT","Bounce - Pearl City Center"]
+    };
+
+    // Nearby Pickup Points for each city (Tourist/Travel Friendly)
+  const nearbyPoints = {
+  "Chennai": ["Chennai Central Railway Station", "Chennai Airport", "Marina Beach", "Anna Salai" ,"Egmore Area", "T Nagar Shopping Hub", "IT Corridor"," OMR"],
+  "Coimbatore": ["Coimbatore Airport", "Coimbatore Railway Station","Gandhipuram Bus Stand", "RS Puram Market", "Peelamedu Area", "VOC Park & Zoo", "Brookefields Mall"],
+  "Madurai": ["Madurai Airport","Madurai Railway Station", "Meenakshi Temple", "Mattuthavani Bus Stand", "Alagar Hills Entrance", "Thirumalai Nayakkar Palace", "Hotel Pickup Areas"],
+  "Trichy": ["Tiruchirappalli Airport", "Srirangam Temple Area", "Central Bus Stand", "Rock Fort Temple", "Thillai Nagar Market", "Government College Area"],
+  "Salem": ["Salem Railway Station", "Main Bus Stand", "Yercaud Hills Entrance", "Fairlands Area", "Salem Steel Plant Area", "Downtown Salem"],
+  "Erode": ["Erode Bus Stand", "Perundurai Industrial Area", "Bhavani Temple Area", "Erode Railway Station", "Vellode Lake & Park", "Erode City Center"],
+  "Tirunelveli": ["Tirunelveli Bus Stand", "Tirunelveli Railway Station", "Nellaiappar Temple Area", "Palayamkottai Market", "Courtallam Waterfalls Entrance", "Airport Pickup"],
+  "Vellore": ["Vellore Fort Area", "Katpadi Railway Station", "VIT University Area", "Downtown Vellore", "Medical College Area", "Arignar Anna Street"],
+  "Thanjavur": ["Thanjavur Bus Stand", "Brihadeeswarar Temple", "Royal Palace Area", "College Road", "Medical College Area", "Downtown Thanjavur"],
+  "Tuticorin": ["Tuticorin Bus Stand", "Tuticorin Port","Harbor", "V.O. Chidambaranar Airport", "Central Market", "Beach Road ","Sightseeing Spots", "Hotel Pickup Areas"]
+};
+
+
+    // When Pickup Location changes, update Agency and Nearby Points
+    locationSelect.addEventListener("change", () => {
+      const city = locationSelect.value;
+
+      // Update Rental Agencies
+      agencySelect.innerHTML = '<option value="">Select Agency</option>';
+      if (rentalAgencies[city]) {
+        rentalAgencies[city].forEach(agency => {
+          const opt = document.createElement("option");
+          opt.value = agency;
+          opt.textContent = agency;
+          agencySelect.appendChild(opt);
+        });
+      }
+
+      // Update Nearby Pickup Points
+      nearbySelect.innerHTML = '<option value="">Select Nearby Pickup Point</option>';
+      if (nearbyPoints[city]) {
+        nearbyPoints[city].forEach(point => {
+          const opt = document.createElement("option");
+          opt.value = point;
+          opt.textContent = point;
+          nearbySelect.appendChild(opt);
+        });
+      }
+    });
+
+    // Update total dynamically
+    function updateTotal() {
+      const days = parseInt(daysInput.value) || 1;
+      totalDisplay.textContent = `Total: Rs. ${price * days}`;
+    }
+
+    [startDateInput, endDateInput, daysInput].forEach(el => {
+      el.addEventListener("input", () => {
+        const start = new Date(startDateInput.value);
+        const end = new Date(endDateInput.value);
+        const diff = (end - start) / (1000 * 60 * 60 * 24);
+        daysInput.value = diff > 0 ? diff : 1;
+        updateTotal();
+      });
+    });
+
+    updateTotal();
+
+    // Confirm booking button
+    confirmBtn.addEventListener("click", () => {
+      const city = locationSelect.value;
+      const agency = agencySelect.value;
+      const nearby = nearbySelect.value;
+      const days = parseInt(daysInput.value);
+      const aadhaarFile = aadhaarInput.files[0];
+
+      if (!city) { alert("Please select a Pickup Location."); return; }
+      if (!agency) { alert("Please select a Rental Agency."); return; }
+      if (!nearby) { alert("Please select a Nearby Pickup Point."); return; }
+      if (!days || days < 1) { alert("Please enter valid number of days."); return; }
+      if (!aadhaarFile) { alert("Please upload Aadhaar card."); return; }
+
+      confirmBtn.disabled = true;
+      confirmBtn.textContent = "Processing Payment...";
+
+      setTimeout(() => {
+        confirmBtn.disabled = false;
+        confirmBtn.textContent = "Confirm Booking";
+
+        paymentSuccess.style.display = "block";
+        paymentSuccess.textContent = `✅ Payment successful! Your car is booked at ${agency}, ${city} (Pickup Point: ${nearby}).`;
+      }, 2000);
+    });
+  </script>
+</body>
+</html>

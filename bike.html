@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bike Rentals in Tamil Nadu</title>
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f4f6f9;
+    }
+    header {
+      background: linear-gradient(90deg, #004aad, #0078ff);
+      color: white;
+      text-align: center;
+      padding: 20px;
+      font-size: 1.7rem;
+      font-weight: bold;
+    }
+    .bike-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      padding: 40px;
+    }
+    .bike-card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      text-align: center;
+      transition: transform 0.3s ease;
+      padding-bottom: 15px;
+    }
+    .bike-card:hover {
+      transform: translateY(-6px);
+    }
+    .bike-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+    .bike-info h3 {
+      margin: 10px 0 5px;
+      color: #222;
+    }
+    .price {
+      color: #e91e63;
+      font-weight: bold;
+    }
+    button {
+      width: 85%;
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      background: #004aad;
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #003580;
+    }
+    footer {
+      background: #004aad;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>🏍️ Bike Rentals in Tamil Nadu</header>
+
+  <div class="bike-container">
+    <div class="bike-card">
+      <img src="hondaactiva.jpeg" alt="Honda Activa 6G">
+      <div class="bike-info">
+        <h3>Honda Activa 6G</h3>
+        <p>1 Day (100 km limit)</p>
+        <div class="price">Rs. 480</div>
+        <button class="book-btn">Book</button>
+      </div>
+    </div>
+
+    <div class="bike-card">
+      <img src="KTM Duke 200.jpeg" alt="KTM Duke 200">
+      <div class="bike-info">
+        <h3>KTM Duke 200</h3>
+        <p>1 Day (100 km limit)</p>
+        <div class="price">Rs. 980</div>
+        <button class="book-btn">Book</button>
+      </div>
+    </div>
+
+    <div class="bike-card">
+      <img src="Bajaj Pulsar 150.jpeg" alt="Bajaj Pulsar 150">
+      <div class="bike-info">
+        <h3>Royal Enfield Classic 350</h3>
+        <p>1 Day (100 km limit)</p>
+        <div class="price">Rs. 850</div>
+        <button class="book-btn">Book</button>
+      </div>
+    </div>
+
+
+    <!-- 🏍 Bike 4 -->
+    <div class="bike-card">
+      <img src="Royal Enfield Classic 350.jpeg" alt="Royal Enfield Classic 350">
+      <div class="bike-info">
+        <h3>Royal Enfield Classic 350</h3>
+        <p>1 Day (100 km limit)</p>
+        <div class="price">Rs. 850</div>
+        <button class="book-btn">Book</button>
+      </div>
+    </div>
+
+    <!-- 🏍 Bike 5 -->
+    <div class="bike-card">
+      <img src="KTM Duke 200.jpeg" alt="KTM Duke 200">
+      <div class="bike-info">
+        <h3>KTM Duke 200</h3>
+        <p>1 Day (100 km limit)</p>
+        <div class="price">Rs. 980</div>
+        <button class="book-btn">Book</button>
+      </div>
+    </div>
+
+
+     <!-- Bike 6 -->
+  <div class="bike-card">
+    <img src="Bajaj Pulsar 120.jpeg" alt="Bajaj Pulsar">
+    <div class="bike-info">
+      <h3>Bajaj Pulsar 150</h3>
+      <p>1 Day (100 km limit)</p>
+      <div class="price">Rs. 800</div>
+      <button class="book-btn">Book</button>
+    </div>
+  </div>
+
+  <!-- Bike 7 -->
+  <div class="bike-card">
+    <img src="Honda CB Shine.jpeg" alt="Honda CB Shine">
+    <div class="bike-info">
+      <h3>Honda CB Shine</h3>
+      <p>1 Day (80 km limit)</p>
+      <div class="price">Rs. 750</div>
+      <button class="book-btn">Book</button>
+    </div>
+  </div>
+
+  <!-- Bike 8 -->
+  <div class="bike-card">
+    <img src="Royal Enfield.jpeg" alt="Royal Enfield ">
+    <div class="bike-info">
+      <h3>Royal Enfield Classic 350</h3>
+      <p>1 Day (100 km limit)</p>
+      <div class="price">Rs. 1200</div>
+      <button class="book-btn">Book</button>
+    </div>
+  </div>
+
+  <!-- Bike 9 -->
+  <div class="bike-card">
+    <img src="TVS Apache RTR 160.jpeg" alt="TVS Apache RTR 160">
+    <div class="bike-info">
+      <h3>TVS Apache RTR 160</h3>
+      <p>1 Day (100 km limit)</p>
+      <div class="price">Rs. 850</div>
+      <button class="book-btn">Book</button>
+    </div>
+  </div>
+
+  <!-- Bike 10-->
+  <div class="bike-card">
+    <img src="Yamaha FZ.jpeg" alt="Yamaha FZ">
+    <div class="bike-info">
+      <h3>Yamaha FZ</h3>
+      <p>1 Day (100 km limit)</p>
+      <div class="price">Rs. 900</div>
+      <button class="book-btn">Book</button>
+    </div>
+  </div>
+
+  <!-- Bike 11 -->
+  <div class="bike-card">
+    <img src="Hero Glamour.jpeg" alt="Hero Glamour">
+    <div class="bike-info">
+      <h3>Hero Glamour</h3>
+      <p>1 Day (80 km limit)</p>
+      <div class="price">Rs. 700</div>
+     <button class="book-btn">Book</button>
+    </div>
+  </div>
+
+  <!-- Bike 12 -->
+  <div class="bike-card">
+    <img src="Suzuki Gixxer.jpeg" alt="Suzuki Gixxer">
+    <div class="bike-info">
+      <h3>Suzuki Gixxer</h3>
+      <p>1 Day (100 km limit)</p>
+      <div class="price">Rs. 950</div>
+     <button class="book-btn">Book</button>
+    </div>
+  </div>
+
+  <!-- Bike 13 -->
+  <div class="bike-card">
+    <img src="Honda CB Hornet.jpeg" alt="Honda CB Hornet">
+    <div class="bike-info">
+      <h3>Honda CB Hornet</h3>
+      <p>1 Day (100 km limit)</p>
+      <div class="price">Rs. 950</div>
+      <button class="book-btn">Book</button>
+    </div>
+  </div>
+
+  <!-- Bike 14 -->
+  <div class="bike-card">
+    <img src="apache.jpeg" alt="Apache">
+    <div class="bike-info">
+      <h3>Honda CB Hornet</h3>
+      <p>1 Day (100 km limit)</p>
+      <div class="price">Rs. 950</div>
+      <button class="book-btn">Book</button>
+    </div>
+  </div>
+
+  
+
+  <!-- Bike 15 -->
+  <div class="bike-card">
+    <img src="KTM.jpeg" alt="KTM RC 200">
+    <div class="bike-info">
+      <h3>KTM RC 200</h3>
+      <p>1 Day (100 km limit)</p>
+      <div class="price">Rs. 1000</div>
+       <button class="book-btn">Book</button>
+    </div>
+  </div>
+  
+  </div>
+
+
+  
+
+  <footer>© 2025 Bike Rentals Tamil Nadu | All Rights Reserved</footer>
+
+  <script>
+    // Attach click event for all buttons
+    document.querySelectorAll(".book-btn").forEach(button => {
+      button.addEventListener("click", (e) => {
+        const card = e.target.closest(".bike-card");
+        const bikeName = card.querySelector("h3").textContent.trim();
+        const priceText = card.querySelector(".price").textContent.trim();
+        const price = priceText.replace(/[^0-9]/g, ""); // extract digits only
+        // Redirect with query parameters
+        window.location.href = `form.html?bike=${encodeURIComponent(bikeName)}&price=${price}`;
+      });
+    });
+  </script>
+
+</body>
+</html>
