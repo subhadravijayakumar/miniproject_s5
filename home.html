@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tamil Nadu Travel Guide</title>
+<style>
+  /* ====== Global Styles ====== */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f9f9f9;
+    color: #222;
+  }
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  /* ====== Navbar ====== */
+  .navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 15px 40px;
+    background: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    z-index: 1000;
+    transition: background 0.4s, padding 0.4s;
+  }
+  .navbar.scrolled {
+    background: #fff8f6;
+    padding: 10px 30px;
+    box-shadow: 0 4px 25px rgba(0,0,0,0.15);
+  }
+  .navbar .logo {
+    font-size: 1.6rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  .navbar .logo:hover {
+    transform: scale(1.05);
+  }
+  .logo span {
+    color: #e74c3c;
+  }
+  .navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+  }
+  .navbar ul li a {
+    font-size: 1rem;
+    color: #333;
+    font-weight: 500;
+    padding: 8px 15px;
+    border-radius: 20px;
+    transition: 0.3s;
+  }
+  .navbar ul li a:hover,
+  .navbar ul li a.active {
+    background: #ffece9;
+    color: #e74c3c;
+  }
+
+  /* ====== Hero Section ====== */
+  .hero {
+    height: 100vh;
+    background: url('https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=2070&q=80') center/cover no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: "";
+    position: absolute;
+    top:0; left:0; right:0; bottom:0;
+    background: rgba(0,0,0,0.4);
+    z-index: 1;
+  }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    padding: 20px;
+    animation: fadeInUp 2s ease;
+  }
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero h1 {
+    font-size: 3.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  .hero h1 span { color: #ff5722; }
+  .hero p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    line-height: 1.6;
+  }
+
+  /* Buttons */
+  .btn-container { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+  .btn {
+    padding: 12px 25px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 25px;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  }
+  .btn-primary {
+    background: linear-gradient(45deg, #ff5722, #ff8a65);
+    color: white;
+  }
+  .btn-primary:hover {
+    background: linear-gradient(45deg, #e64a19, #ff7043);
+    transform: translateY(-3px);
+  }
+  .btn-secondary {
+    background: white;
+    color: #333;
+    border: 2px solid #ddd;
+  }
+  .btn-secondary:hover {
+    background: #f4f4f4;
+    transform: translateY(-3px);
+  }
+
+  /* ====== Stats Section ====== */
+  .stats {
+    padding: 80px 40px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    background: #fff;
+    text-align: center;
+  }
+  .stat-item {
+    flex: 1 1 200px;
+    margin: 20px;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease;
+    background: #fafafa;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  }
+  .stat-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .stat-icon {
+    font-size: 3rem;
+    background: linear-gradient(45deg, #ff5722, #1976d2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 15px;
+    transition: transform 0.3s ease;
+  }
+  .stat-item:hover .stat-icon {
+    transform: scale(1.2) rotate(10deg);
+  }
+  .stat-item h2 { font-size: 2rem; margin: 0; }
+  .stat-item p { margin-top: 5px; color: #555; }
+
+  /* ====== Travel Companion Section ====== */
+  .companion {
+    padding: 80px 20px;
+    background: #f5f9ff;
+    text-align: center;
+  }
+  .companion h2 {
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+    color: #222;
+  }
+  .companion p {
+    font-size: 1.1rem;
+    max-width: 700px;
+    margin: auto;
+    line-height: 1.6;
+    color: #555;
+  }
+
+  /* ====== Footer ====== */
+  footer {
+    background: #222;
+    color: #ddd;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+  }
+  footer a {
+    color: #ff7043;
+    margin: 0 10px;
+    transition: color 0.3s;
+  }
+  footer a:hover { color: white; }
+
+  /* ====== Responsive ====== */
+  @media (max-width: 768px) {
+    .hero h1 { font-size: 2.5rem; }
+    .navbar ul { display: none; }
+    .navbar.active ul {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 60px;
+      right: 20px;
+      background: white;
+      padding: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      border-radius: 8px;
+    }
+    .menu-toggle {
+      display: block;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+  }
+  @media (min-width: 769px) {
+    .menu-toggle { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ====== Navbar ====== -->
+<nav class="navbar" id="navbar">
+  <div class="logo">
+    <span>📸</span> Tamil <span>Nadu</span>
+  </div>
+  <div class="menu-toggle" id="menu-toggle">☰</div>
+  <ul>
+    <li><a href="#home" class="active">Home</a></li>
+    <li><a href="#destinations">Destinations</a></li>
+    <li><a href="#ai-guide">AI Guide</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ====== Hero Section ====== -->
+<section class="hero" id="home">
+  <div class="hero-content">
+    <h1>Discover the <br><span>Soul of Tamil Nadu</span></h1>
+    <p>From ancient temples to misty hill stations, embark on a journey through Tamil Nadu's rich cultural heritage and breathtaking landscapes</p>
+    <div class="btn-container">
+      <button class="btn btn-primary" onclick="scrollToSection('destinations')">Explore Destinations</button>
+      <button class="btn btn-secondary" onclick="scrollToSection('ai-guide')">Ask AI Guide</button>
+    </div>
+  </div>
+</section>
+
+<!-- ====== Stats Section ====== -->
+<section class="stats" id="destinations">
+  <div class="stat-item">
+    <div class="stat-icon">📍</div>
+    <h2>50+</h2>
+    <p>Destinations</p>
+  </div>
+  <div class="stat-item">
+    <div class="stat-icon">👥</div>
+    <h2>10K+</h2>
+    <p>Happy Travelers</p>
+  </div>
+  <div class="stat-item">
+    <div class="stat-icon">🏅</div>
+    <h2>4.8</h2>
+    <p>Rating</p>
+  </div>
+  <div class="stat-item">
+    <div class="stat-icon">⏰</div>
+    <h2>24/7</h2>
+    <p>AI Support</p>
+  </div>
+</section>
+
+<!-- ====== Travel Companion Section ====== -->
+<section class="companion" id="ai-guide">
+  <h2>Your Complete Travel Companion</h2>
+  <p>Experience Tamil Nadu like never before with our comprehensive travel platform featuring AI-powered guidance and curated local insights.</p>
+</section>
+
+<!-- ====== Footer ====== -->
+<footer id="contact">
+  <p>© 2025 Tamil Nadu Travel Guide | Built with ❤️</p>
+  <p>
+    <a href="#">Facebook</a> |
+    <a href="#">Instagram</a> |
+    <a href="#">Twitter</a>
+  </p>
+</footer>
+
+<script>
+  // Scroll reveal for stats
+  const stats = document.querySelectorAll('.stat-item');
+  function revealStats() {
+    const windowHeight = window.innerHeight;
+    stats.forEach(stat => {
+      const statTop = stat.getBoundingClientRect().top;
+      if (statTop < windowHeight - 50) {
+        stat.classList.add('visible');
+      }
+    });
+  }
+  window.addEventListener('scroll', revealStats);
+
+  // Navbar scroll effect
+  const navbar = document.getElementById('navbar');
+  const navLinks = document.querySelectorAll('.navbar ul li a');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) navbar.classList.add('scrolled');
+    else navbar.classList.remove('scrolled');
+
+    // Active link on scroll
+    navLinks.forEach(link => {
+      const section = document.querySelector(link.getAttribute('href'));
+      if(section.offsetTop <= window.scrollY + 60 &&
+         section.offsetTop + section.offsetHeight > window.scrollY + 60) {
+        navLinks.forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+      }
+    });
+  });
+
+  // Mobile menu toggle
+  const menuToggle = document.getElementById('menu-toggle');
+  menuToggle.addEventListener('click', () => {
+    navbar.classList.toggle('active');
+  });
+
+  // Smooth scroll to sections
+  function scrollToSection(id) {
+    document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+</script>
+
+</body>
+</html>

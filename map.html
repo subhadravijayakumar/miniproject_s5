@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Smart Route Finder | Tamil Nadu Explorer</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+    <style>
+      /* General Reset */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Poppins", Arial, sans-serif;
+        background-color: #fafafa;
+        color: #333;
+      }
+
+      /* Header */
+      header {
+        background: white;
+        padding: 15px 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      header h2 {
+        font-size: 24px;
+        font-weight: 700;
+      }
+
+      header h2 span {
+        color: #ff5722;
+      }
+
+      /* Main Section */
+      main {
+        text-align: center;
+        padding: 30px 20px;
+        background: linear-gradient(
+          135deg,
+          #ffe5d0,
+          #fff5ef,
+          #ffffff
+        );
+      }
+
+      main h3 {
+        font-size: 22px;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 8px;
+      }
+
+      main p {
+        font-size: 15px;
+        color: #555;
+        margin-bottom: 15px;
+      }
+
+      /* Input Section */
+      input {
+        padding: 10px 15px;
+        font-size: 16px;
+        width: 280px;
+        border: 2px solid #ff5722;
+        border-radius: 8px;
+        outline: none;
+        transition: 0.3s;
+      }
+
+      input:focus {
+        border-color: #e64a19;
+        box-shadow: 0 0 5px rgba(255, 87, 34, 0.4);
+      }
+
+      button {
+        padding: 10px 18px;
+        font-size: 16px;
+        background: #ff5722;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        margin-left: 10px;
+        font-weight: 500;
+        transition: 0.3s;
+      }
+
+      button:hover {
+        background: #e64a19;
+        transform: translateY(-1px);
+      }
+
+      /* Map and Info Section */
+      #map {
+        height: 75vh;
+        width: 95%;
+        max-width: 1200px;
+        margin: 25px auto;
+        border-radius: 15px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      }
+
+      #info {
+        max-width: 1200px;
+        margin: 20px auto;
+        background: white;
+        border-radius: 12px;
+        padding: 15px;
+        font-size: 16px;
+        color: #444;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      footer {
+        margin-top: 20px;
+        padding: 10px;
+        background: white;
+        color: #888;
+        font-size: 14px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <h2>🚗 Smart Route Finder <span>with Alternative Paths</span></h2>
+    </header>
+
+    <main>
+      <h3>Explore Tamil Nadu with Smarter Routes</h3>
+      <p>Enter your destination to discover the best path and alternatives:</p>
+
+      <input type="text" id="destination" placeholder="e.g. Kodaikanal" />
+      <button id="searchBtn">Find Route</button>
+    </main>
+
+    <div id="map"></div>
+    <div id="info">Your route info will appear here.</div>
+
+    <footer>© 2025 Tamil Nadu Explorer | Smart Route Finder</footer>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine@3.2.12/dist/leaflet-routing-machine.min.js"></script>
+
+    <script>
+      const map = L.map("map").setView([11.0168, 76.9558], 7); // Tamil Nadu center
+
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution: "&copy; OpenStreetMap contributors",
+      }).addTo(map);
+
+      const infoDiv = document.getElementById("info");
+      const btn = document.getElementById("searchBtn");
+
+      btn.addEventListener("click", findRoute);
+
+      // Function to find alternative routes
+      function findRoute() {
+        const place = document.getElementById("destination").value.trim();
+        if (!place) {
+          alert("Please enter a destination!");
+          return;
+        }
+
+        infoDiv.textContent = "Locating you and finding the best routes...";
+
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(
+            (pos) => {
+              const start = [pos.coords.latitude, pos.coords.longitude];
+              geocodeDestination(place, start);
+            },
+            () => {
+              alert("Location access denied!");
+            }
+          );
+        } else {
+          alert("Geolocation not supported!");
+        }
+      }
+
+      // Convert destination name → coordinates (using Nominatim)
+      async function geocodeDestination(place, start) {
+        const url = `https://nominatim.openstreetmap.org/search?format=json&limit=1&q=${encodeURIComponent(
+          place + ", Tamil Nadu, India"
+        )}`;
+        const res = await fetch(url);
+        const data = await res.json();
+
+        if (data.length === 0) {
+          infoDiv.textContent = "Destination not found. Try another place.";
+          return;
+        }
+
+        const end = [parseFloat(data[0].lat), parseFloat(data[0].lon)];
+
+        showRoutes(start, end, place);
+      }
+
+      // Display multiple alternative routes
+      function showRoutes(start, end, place) {
+        map.setView(start, 10);
+        L.marker(start).addTo(map).bindPopup("You are here").openPopup();
+        L.marker(end).addTo(map).bindPopup(place);
+
+        const routingControl = L.Routing.control({
+          waypoints: [L.latLng(start), L.latLng(end)],
+          routeWhileDragging: false,
+          showAlternatives: true,
+          altLineOptions: {
+            styles: [{ color: "#4caf50", opacity: 0.7, weight: 5 }],
+          },
+          createMarker: function () {
+            return null;
+          },
+        })
+          .on("routesfound", (e) => {
+            let routeInfo = "";
+            e.routes.forEach((r, i) => {
+              const km = (r.summary.totalDistance / 1000).toFixed(2);
+              const min = Math.round(r.summary.totalTime / 60);
+              routeInfo += `<p><b>Route ${i + 1}:</b> ${km} km, ~${min} min</p>`;
+            });
+
+            infoDiv.innerHTML =
+              `<b>${place}</b> - Found ${e.routes.length} routes:<br>` +
+              routeInfo +
+              "<p style='color:#ff5722;'>Traffic-heavy routes are automatically given alternative options.</p>";
+          })
+          .addTo(map);
+      }
+    </script>
+  </body>
+</html>
