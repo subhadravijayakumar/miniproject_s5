@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Tamil Nadu Hospital Finder</title>
+
+  <!-- Google font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Tamil Nadu Tourist Place → Nearby Hospitals</h1>
+    <p class="subtitle">Type or choose a tourist place to see hospitals nearby.</p>
+
+    <div class="search-box">
+      <!-- input with datalist gives both typing and select convenience -->
+      <input id="placeInput" list="placesList" placeholder="Type or select a tourist place" autocomplete="off"/>
+      <datalist id="placesList">
+        <option value="Kodaikanal"></option>
+        <option value="Ooty"></option>
+        <option value="Madurai"></option>
+        <option value="Rameswaram"></option>
+        <option value="Kanyakumari"></option>
+        <option value="Chennai"></option>
+        <option value="Coimbatore"></option>
+        <option value="Trichy"></option>
+        <option value="Yercaud"></option>
+        <option value="Courtallam"></option>
+        <option value="Mahabalipuram"></option>
+        <option value="Thanjavur"></option>
+        <option value="Vellore"></option>
+        <option value="Dhanushkodi"></option>
+        <option value="Tuticorin"></option>
+        <option value="Erode"></option>
+        <option value="Kumbakonam"></option>
+        <option value="Namakkal"></option>
+        <option value="Pollachi"></option>
+        <option value="Salem"></option>
+        <option value="Theni"></option>
+        <option value="Tirunelveli"></option>
+        <option value="Velankanni"></option>
+        <option value="Palani"></option>
+        <option value="Valparai"></option>
+        <option value="Karur"></option>
+        <option value="Cuddalore"></option>
+        <option value="Nagapattinam"></option>
+        <option value="Perambalur"></option>
+        <option value="Pudukkottai"></option>
+      </datalist>
+
+      <button id="searchBtn">Search</button>
+    </div>
+
+    <div id="results" class="results"></div>
+    <p id="status" class="status"></p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+ 
